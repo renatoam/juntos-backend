@@ -1,0 +1,44 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "Back-end application created to provide an API for the Juntos Challenge, using Typescript, POO, DDD and Clean Architecture",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "npx build",
+    "start": "node index.js",
+    "dev": "nodemon src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/renatoam/juntos-backend.git"
+  },
+  "keywords": [
+    "typescript",
+    "node",
+    "clean-architecture",
+    "ddd",
+    "docker",
+    "oop",
+    "jest",
+    "tdd"
+  ],
+  "author": "Renato Alves de Melo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renatoam/juntos-backend/issues"
+  },
+  "homepage": "https://github.com/renatoam/juntos-backend#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.41",
+    "@types/nodemon": "^1.19.1",
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

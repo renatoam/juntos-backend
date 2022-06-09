@@ -1,0 +1,9 @@
+{
+  "watch": ["src"],
+  "ext": "js, ts, json",
+  "exec": "ts-node --experimental-specifier-resolution=node src/index.ts",
+  "ignore": [".git", "node_modules/", "dist/"],
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
