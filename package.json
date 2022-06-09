@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "npx build",
-    "start": "node index.js",
-    "dev": "nodemon src/index.ts",
+    "start": "node -r dotenv/config index.js",
+    "dev": "nodemon -r dotenv/config src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1"
   }
 }
