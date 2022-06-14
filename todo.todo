@@ -1,0 +1,120 @@
+You should develop:
+
+  Customer:
+  
+  ☐ Filter by state;
+  ☐ Search by name and/or last name;
+  ☐ Pagination to navigate between cards;
+  ☐ Navigation when clicking on customer cards;
+  ☐ An internal page with more details of customers (use your creativity);
+  ☐ We'll be happy (😍) if you write tests for it.
+  
+  Improvements:
+  
+  CI/CD:
+    ☐ Taggear commits pra criar changelog decente e estrutura de releases profissional
+    ☐ Fazer rebase no repo pra arrumar e organizar o histórico
+      How to:
+      Tag the commit with this command: `git tag -a M1 e3afd034 -m "Tag Message"`
+      Specify the tag in the git push command:: `git push origin M1`
+    ☐ Configurar Docker
+  
+  Employees:
+    ✔ Listar e criar todos as features @done(22-05-17 08:13)
+    ☐ * Checar as features
+    ☐ Mudar estrutura de pastas e deixar por feature
+    ☐ Create Employee
+    ☐ Get Employee by Email
+    ☐ Get All Employees
+    ☐ Get Many Employees (filter)
+    ☐ Update Employee
+    ☐ Remove Employee
+    ☐ Remove Many (filter)
+    ☐ Implement Base Controller
+    ☐ Adjust all the paths to relative
+    ☐ Check calls via Insomnia
+    ☐ Criar cenários com BDD
+    
+    * pra concluir a feature, preciso finalizar:
+      ☐ Value Objects (https://khalilstemmler.com/articles/typescript-value-object/)
+      ☐ Error Handling
+        - (https://khalilstemmler.com/articles/enterprise-typescript-nodejs/handling-errors-result-class/)
+        - (https://enterprisecraftsmanship.com/posts/error-handling-exception-or-result/)
+        - (https://livebook.manning.com/book/functional-programming-in-java/chapter-7/1)
+        - (https://www.smashingmagazine.com/2020/08/error-handling-nodejs-error-classes/)
+      ☐ Aggregate (https://khalilstemmler.com/articles/typescript-domain-driven-design/aggregate-design-persistence/)
+      ☐ Domain Events
+      - (https://khalilstemmler.com/blogs/domain-driven-design/where-do-domain-events-get-dispatched/)
+      - (https://khalilstemmler.com/articles/typescript-domain-driven-design/chain-business-logic-domain-events/)
+      - (https://khalilstemmler.com/articles/graphql/ddd/schema-design/)
+      ☐ Use Cases (https://khalilstemmler.com/articles/enterprise-typescript-nodejs/application-layer-use-cases/)
+      ☐ Controllers (https://khalilstemmler.com/articles/enterprise-typescript-nodejs/clean-consistent-expressjs-controllers/)
+      ☐ Repos, DTO, Mappers (https://khalilstemmler.com/articles/typescript-domain-driven-design/repository-dto-mapper/)
+      ☐ Create tests
+        - (https://khalilstemmler.com/articles/test-driven-development/use-case-tests-mocking/)
+        - (https://khalilstemmler.com/wiki/test-doubles/)
+        - (https://khalilstemmler.com/wiki/managed-vs-unmanaged-dependencies/#Use-case-testing-unmanaged-dependencies)
+        - (https://khalilstemmler.com/articles/test-driven-development/how-to-mock-typescript/)
+        - (https://github.com/goldbergyoni/javascript-testing-best-practices)
+        - (https://www.abdou.dev/blog/the-repository-pattern-with-typescript)
+
+  
+  ✔ Alterar as regras pra nova demanda (olhar figma da juntos) @done(22-05-08 15:46)
+  
+  ☐ Back-End
+    ✔ Usar controllers, repositories e useCases @done(22-05-08 15:46)
+    ☐ Criar filtro pelo Back-End
+    ☐ Criar paginação pelo Back-End
+  ☐ Corrigir filtro
+    ☐ Filtros muito lentos
+    ☐ Layout do filtro quebrando
+    ☐ Filtro inicial, por nome, não tem ação (select)
+  ☐ Corrigir paginação
+    ☐ Paginação considera sempre a lista com todos os usuários
+    ☐ Paginação não some quando não tem mais usuários
+    ☐ Criar/usar hook de paginação
+  ☐ Corrigir UX e Layout
+    ☐ Melhorar os loaders
+    ☐ Tirar o `fixed` do footer
+    ☐ Melhorar espaçamentos
+    ☐ Criar formatação para os dados (nomes, endereços, etc.)
+    ☐ Criar responsividade
+    ☐ Padronizar o idioma
+  ☐ Projeto
+    ☐ Atualizar Next e React
+    ☐ Refazer a configuração do Husky
+    ☐ Corrigir configuração do Prettier e do Eslint
+    ☐ Melhorar a documentação (Reac me/Changelog)
+    ☐ Adicionar snippets na documentação
+    ☐ Adicionar variáveis de ambiente faltantes
+    ☐ Corrigir dados internos (rocketseat sendo mencionada)
+    ☐ Substituir Styled Components por Material UI ou vice-versa
+  ☐ Corrigir/aplicar patterns
+    ☐ Remover componentes não utilizados
+    ☐ Padronizar imports com nomes dos components
+    ☐ Trocar validações aninhadas por optional chaining e nullish coalescing
+    ☐ Corrigir uso dos headings
+    ☐ Corrigir SEO (semantics, alt, acessibilidade, title nas pages)
+  
+  Features:
+  
+  ☐ Projeto
+    ✔ Mudar pra Typescript @done(22-02-14 20:13)
+    ✔ Cachear os dados com React Query ou SWR @done(22-02-14 21:49)
+    ☐ Fazer deploy
+    ☐ Usar Service Worker
+    ☐ Criar manifest
+    ☐ Configurar Github Actions
+    ☐ Tirar métricas com Lighthouse
+  ☐ Criar filtro na tela de listagem de usuários
+  ☐ Criar uma página de busca
+  ☐ Criar uma página 404
+  ☐ Criar página de detalhe de usuário
+  ☐ Criar filtro para nome e sobrenome
+  ☐ Criar fluxo de autenticação
+  ☐ Criar testes
+  ☐ Criar link reais pro header
+  ☐ Criar variáveis pra estilo
+  ☐ Usar `display: grid`
+  ☐ Usar `addresss` tag pra endereço
+  
