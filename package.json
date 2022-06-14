@@ -8,7 +8,8 @@
     "build": "npx build",
     "start": "node -r dotenv/config index.js",
     "dev": "nodemon -r dotenv/config src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db": "./script.sh",
+    "test": "echo \"Error: $PORT no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
