@@ -1,0 +1,129 @@
+{
+  "employees": [
+    {
+      "title": "Ms.",
+      "first_name": "Saori",
+      "last_name": "Kido",
+      "email": "atena@outlook.com",
+      "gender": "female",
+      "birthday": "1973-01-09",
+      "hire": "1983-24-01",
+      "phone": "", 
+      "cell": "", 
+      "occupation": "Deusa da Guerra e da Sabedoria",
+      "role": 1
+    },
+    {
+      "email": "pegasus@outlook.com",
+      "name": "Seiya de Pégaso",
+      "id": 2,
+      "occupation": "Cavaleiro de Bronze",
+      "hire": "1986-24-01",
+      "birthday": "1973-24-11"
+    },
+    {
+      "email": "dragon@outlook.com",
+      "name": "Shiryu de Dragão",
+      "id": 3,
+      "occupation": "Cavaleiro de Bronze",
+      "hire": "1986-24-01",
+      "birthday": "1973-04-10"
+    },
+    {
+      "id": 4,
+      "name": "Hyoga de Cisne",
+      "email": "swan@outlook.com",
+      "occupation": "Cavaleiro de Bronze",
+      "birthday": "1973-23-01",
+      "hire": "1986-25-01"
+    },
+    {
+      "id": 5,
+      "name": "Shun de Andromeda",
+      "email": "andromeda@outlook.com",
+      "occupation": "Cavaleiro de Bronze",
+      "birthday": "1973-09-09",
+      "hire": "1986-25-01"
+    },
+    {
+      "id": 6,
+      "name": "Ikki de Fenix",
+      "email": "phoenix@outlook.com",
+      "occupation": "Cavaleiro de Bronze",
+      "birthday": "1970-15-08",
+      "hire": "1986-25-01"
+    },
+    {
+      "id": 7,
+      "name": "Jabu de Unicornio",
+      "email": "unicorn@outlook.com",
+      "occupation": "Cavaleiro de Bronze",
+      "birthday": "1973-03-11",
+      "hire": "1986-23-01"
+    },
+    {
+      "id": 8,
+      "name": "Nachi de Lobo",
+      "email": "wolf@outlook.com",
+      "occupation": "Cavaleiro de Bronze",
+      "birthday": "1970-20-07",
+      "hire": "1986-21-01"
+    },
+    {
+      "email": "hydra@outlook.com",
+      "name": "Ichi de Hidra",
+      "occupation": "Cavaleiro de Bronze",
+      "hire": "1986-22-01",
+      "birthday": "1972-10-02",
+      "id": 9
+    },
+    {
+      "email": "lionet@outlook.com",
+      "name": "Ban de Lionet",
+      "occupation": "Cavaleiro de Bronze",
+      "hire": "1986-22-01",
+      "birthday": "1972-30-12",
+      "id": 10
+    },
+    {
+      "email": "bear@outlook.com",
+      "name": "Geki de Urso",
+      "occupation": "Cavaleiro de Bronze",
+      "hire": "1986-22-01",
+      "birthday": "1971-15-05",
+      "id": 11
+    },
+    {
+      "email": "chameleon@outlook.com",
+      "name": "June de Camaleão",
+      "occupation": "Cavaleiro de Bronze",
+      "hire": "1986-22-01",
+      "birthday": "1974-17-04",
+      "id": 12
+    },
+    {
+      "email": "aries@outlook.com",
+      "name": "Mu de Jamiel",
+      "occupation": "Cavaleiro de Ouro",
+      "hire": "1987-22-01",
+      "birthday": "1966-27-03",
+      "id": 13
+    },
+    {
+      "email": "taurus@outlook.com",
+      "name": "Aldebaran de Touro",
+      "occupation": "Cavaleiro de Ouro",
+      "hire": "1987-22-02",
+      "birthday": "1966-08-05",
+      "id": 14
+    },
+    {
+      "email": "cancer@outlook.com",
+      "name": "Mascara da Morte de Cancer",
+      "occupation": "Cavaleiro de Ouro",
+      "hire": "1987-22-04",
+      "birthday": "1963-24-06",
+      "id": 15
+    }
+  ]
+}

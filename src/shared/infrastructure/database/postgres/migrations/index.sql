@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS roles (
-  role_id UUID PRIMARY KEY,
+  role_id SERIAL PRIMARY KEY,
   description VARCHAR(20)
 );
 
--- INSERT INTO roles(role_id, description) VALUES ('a81bc81b-dead-4e5d-abff-90865d1e13b1', 'ADMIN');
--- INSERT INTO roles(role_id, description) VALUES ('b81bc81b-dead-4e5d-abff-90865d1e13b2', 'EDITOR');
--- INSERT INTO roles(role_id, description) VALUES ('c81bc81b-dead-4e5d-abff-90865d1e13b3', 'VIEWER');
+INSERT INTO roles(description) VALUES ('ADMIN');
+INSERT INTO roles(description) VALUES ('EDITOR');
+INSERT INTO roles(description) VALUES ('VIEWER');
 
 CREATE TABLE IF NOT EXISTS customers (
   customer_id UUID PRIMARY KEY,
@@ -19,16 +19,13 @@ CREATE TABLE IF NOT EXISTS customers (
   registered DATE NOT NULL,
   phone VARCHAR(30),
   cell VARCHAR(30),
-  role_id UUID,
+  role_id INTEGER,
   CONSTRAINT fk_role
     FOREIGN KEY (role_id)
       REFERENCES roles(role_id)
 );
 
-ALTER TABLE customers
-ALTER COLUMN created_on TYPE TIMESTAMP;
-
--- INSERT INTO customers(customer_id, created_on, title, first_name, last_name, email, gender, birth_date, registered, phone, cell, role_id) VALUES ('b81bc81b-dead-4e5d-abff-90865d1e13b0', now(), 'Mr.', 'Renato', 'Melo', 'renato@alves.com', 'male', '1992-03-03', '2016-11-12 19:10:25-07', null, '11973021653', 'c81bc81b-dead-4e5d-abff-90865d1e13b3');
+INSERT INTO customers(customer_id, created_on, title, first_name, last_name, email, gender, birth_date, registered, phone, cell, role_id) VALUES ('b81bc81b-dead-4e5d-abff-90865d1e13b0', now(), 'Mr.', 'Renato', 'Melo', 'renato@alves.com', 'male', '1992-03-03', '2016-11-12 19:10:25-07', null, '11973021653', 3);
 
 CREATE TABLE IF NOT EXISTS employees (
   employee_id UUID PRIMARY KEY,
@@ -43,13 +40,13 @@ CREATE TABLE IF NOT EXISTS employees (
   phone VARCHAR(30),
   cell VARCHAR(30),
   occupation VARCHAR(50),
-  role_id UUID,
+  role_id INTEGER,
   CONSTRAINT fk_role
     FOREIGN KEY (role_id)
       REFERENCES roles(role_id)
 );
 
--- INSERT INTO employees(employee_id, created_on, title, first_name, last_name, email, gender, birth_date, hire, phone, cell, occupation, role_id) VALUES ('e81bc81b-dead-4e5d-abff-90865d1e13b1', now(), 'Ms.', 'Saori', 'Kido', 'atena@outlook.com', 'female', '1973-01-09', '1983-01-24 19:10:25-07', null, '11973021653', 'God of Justice and War', 'a81bc81b-dead-4e5d-abff-90865d1e13b1');
+INSERT INTO employees(employee_id, created_on, title, first_name, last_name, email, gender, birth_date, hire, phone, cell, occupation, role_id) VALUES ('e81bc81b-dead-4e5d-abff-90865d1e13b1', now(), 'Ms.', 'Saori', 'Kido', 'atena@outlook.com', 'female', '1973-01-09', '1983-01-24 19:10:25-07', null, '11973021653', 'God of Justice and War', 1);
 
 CREATE TABLE IF NOT EXISTS locations (
   location_id UUID PRIMARY KEY,
@@ -79,13 +76,13 @@ CREATE TABLE IF NOT EXISTS pictures (
 );
 
 CREATE TABLE IF NOT EXISTS permissions (
-  permission_id UUID PRIMARY KEY,
+  permission_id SERIAL PRIMARY KEY,
   description VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS permissions_roles (
-  role_id UUID,
-  permission_id UUID,
+  role_id INTEGER,
+  permission_id INTEGER,
     CONSTRAINT pk_permission_roles
       PRIMARY KEY(permission_id, role_id),
     CONSTRAINT fk_permission_roles

@@ -1,21 +1,11 @@
 import express from 'express'
 import cors from 'cors'
 import router from './routes/index'
-import { runMigrations } from './shared/infrastructure/database/postgres/runMigrations'
-import { getDataFromJson } from './populateDatabase'
-import { redis } from './shared/infrastructure/database/redis'
+import { populateDatabase } from './populateDatabase'
 
 const app = express()
 
-runMigrations()
-getDataFromJson()
-
-// testing redis
-redis.set('testing', 'success')
-
-// setTimeout(async () => {
-//   console.log(await redis.get('testing'))
-// }, 500)
+populateDatabase()
 
 app.use(express.json())
 app.use(cors({
