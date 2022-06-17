@@ -1,6 +1,6 @@
 import { Entity } from "../../../shared/domain/Entity";
 import { UniqueEntityID } from "../../../shared/domain/UniqueEntityID";
-import { CustomerProps } from "./CustomerTypes";
+import { CustomerProps } from "./CustomerProps";
 
 export class Customer extends Entity<CustomerProps> {
   get gender() {

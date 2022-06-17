@@ -1,5 +1,5 @@
 import { Customer } from "../../domain/Customer"
-import { CustomerProps } from "../../domain/CustomerTypes"
+import { CustomerProps } from "../../domain/CustomerProps"
 import { AxiosCustomerRepository } from "../../infrastructure/repositories/AxiosCustomerRepository"
 
 export class GetAllCustomersUseCase {

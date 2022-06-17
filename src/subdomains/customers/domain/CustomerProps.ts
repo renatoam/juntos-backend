@@ -46,7 +46,7 @@ export type PictureType = {
 
 export interface CustomerProps {
   gender?: string
-  name: CustomerName
+  name: NameType
   location?: LocationType
   email?: CustomerEmail
   dob?: DobType
@@ -54,4 +54,20 @@ export interface CustomerProps {
   phone?: string
   cell?: string
   picture?: PictureType
+}
+
+
+export interface CustomerJsonToPersistence {
+  customer_id: string
+  created_on: number
+  title: string
+  first_name: string
+  last_name: string
+  email: string
+  gender: string
+  birth_date: string
+  registered: string
+  phone: string
+  cell: string
+  role_id: string
 }

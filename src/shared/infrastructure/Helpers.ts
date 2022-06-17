@@ -1,7 +1,7 @@
 import axios from "axios";
 import { UniqueEntityID } from "../domain/UniqueEntityID";
 import { RequestMethods, SearchKey } from "../types";
-import { nodeCache } from "./database/inMemoryDbNodeCache";
+import { nodeCache } from "./database/redis";
 
 export class Helper<T extends { id?: UniqueEntityID }> {
   findFromAList(array: T[], searchItem: string | number, searchKey: SearchKey): T | undefined {
