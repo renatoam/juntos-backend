@@ -3,14 +3,7 @@ import { UniqueEntityID } from "../../../shared/domain/UniqueEntityID";
 import { Occupation } from "../types";
 import { EmployeeId } from "./EmployeeId";
 import { EmployeeName } from "./EmployeeName";
-
-export type EmployeeProps = {
-  name: EmployeeName
-  email: string
-  occupation?: Occupation
-  birthday?: Date
-  hire?: Date
-}
+import { EmployeeProps } from "./EmployeeProps";
 
 export class Employee extends Entity<EmployeeProps> {
   get id(): UniqueEntityID {

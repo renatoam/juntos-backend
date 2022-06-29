@@ -1,42 +1,4 @@
-import { CustomerEmail } from "./valueObjects/CustomerEmail"
-import { CustomerName } from "./valueObjects/CustomerName"
-
-export type GenderType = 'female' | 'male' | 'other'
-
-export type NameType = {
-  title: string
-  first: string
-  last: string
-}
-
-export type CoordinateType = {
-  latitude: string
-  longitude: string
-}
-
-export type TimezoneType = {
-  offset: string
-  description: string
-}
-
-export type LocationType = {
-  street: string
-  city: string
-  state: string
-  postcode: number
-  coordinates: CoordinateType
-  timezone: TimezoneType
-}
-
-export type DobType = {
-  date: Date
-  age: number
-}
-
-export type RegisteredType = {
-  date: Date
-  age: number
-}
+import { PersonProps } from "../../../shared/types"
 
 export type PictureType = {
   large: string
@@ -44,18 +6,9 @@ export type PictureType = {
   thumbnail: string
 }
 
-export interface CustomerProps {
-  gender?: string
-  name: NameType
-  location?: LocationType
-  email?: CustomerEmail
-  dob?: DobType
-  registered?: RegisteredType
-  phone?: string
-  cell?: string
+export interface CustomerProps extends PersonProps {
   picture?: PictureType
 }
-
 
 export interface CustomerJsonToPersistence {
   customer_id: string
