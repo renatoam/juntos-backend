@@ -1,129 +1,289 @@
 {
   "employees": [
     {
-      "title": "Ms.",
-      "first_name": "Saori",
-      "last_name": "Kido",
+      "name": {
+        "title": "Ms.",
+        "first": "Saori",
+        "last": "Kido"
+      },
       "email": "atena@outlook.com",
       "gender": "female",
-      "birthday": "1973-01-09",
-      "hire": "1983-24-01",
-      "phone": "", 
-      "cell": "", 
+      "dob": {
+        "date": "1973-09-01"
+      },
+      "registered": {
+        "date": "1983-01-24"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Deusa da Guerra e da Sabedoria",
       "role": 1
     },
     {
+      "name": {
+        "title": "Mr.",
+        "first": "Seiya",
+        "last": "de Pégaso"
+      },
       "email": "pegasus@outlook.com",
-      "name": "Seiya de Pégaso",
-      "id": 2,
+      "gender": "male",
+      "dob": {
+        "date": "1973-11-24"
+      },
+      "registered": {
+        "date": "1986-01-24"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "hire": "1986-24-01",
-      "birthday": "1973-24-11"
+      "role": 2
     },
     {
+      "name": {
+        "title": "Mr.",
+        "first": "Shiryu",
+        "last": "de Dragão"
+      },
       "email": "dragon@outlook.com",
-      "name": "Shiryu de Dragão",
-      "id": 3,
+      "gender": "male",
+      "registered": {
+        "date": "1986-01-24"
+      },
+      "dob": {
+        "date": "1973-10-04"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "hire": "1986-24-01",
-      "birthday": "1973-04-10"
+      "role": 2
     },
     {
-      "id": 4,
-      "name": "Hyoga de Cisne",
+      "name": {
+        "title": "Mr.",
+        "first": "Hyoga",
+        "last": "de Cisne"
+      },
       "email": "swan@outlook.com",
+      "gender": "male",
+      "registered": {
+        "date": "1986-01-25"
+      },
+      "dob": {
+        "date": "1973-01-23"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "birthday": "1973-23-01",
-      "hire": "1986-25-01"
+      "role": 2
     },
     {
-      "id": 5,
-      "name": "Shun de Andromeda",
+      "name": {
+        "title": "Mr.",
+        "first": "Shun",
+        "last": "de Andromeda"
+      },
       "email": "andromeda@outlook.com",
+      "gender": "male",
+      "registered": {
+        "date": "1986-01-25"
+      },
+      "dob": {
+        "date": "1973-09-09"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "birthday": "1973-09-09",
-      "hire": "1986-25-01"
+      "role": 2
     },
     {
-      "id": 6,
-      "name": "Ikki de Fenix",
+      "name": {
+        "title": "Mr.",
+        "first": "Ikki",
+        "last": "de Fenix"
+      },
       "email": "phoenix@outlook.com",
+      "gender": "male",
+      "registered": {
+        "date": "1986-01-25"
+      },
+      "dob": {
+        "date": "1970-08-15"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "birthday": "1970-15-08",
-      "hire": "1986-25-01"
+      "role": 2
     },
     {
-      "id": 7,
-      "name": "Jabu de Unicornio",
+      "name": {
+        "title": "Mr.",
+        "first": "Jabu",
+        "last": "de Unicornio"
+      },
       "email": "unicorn@outlook.com",
+      "gender": "male",
+      "registered": {
+        "date": "1986-01-23"
+      },
+      "dob": {
+        "date": "1973-11-03"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "birthday": "1973-03-11",
-      "hire": "1986-23-01"
+      "role": 3
     },
     {
-      "id": 8,
-      "name": "Nachi de Lobo",
+      "name": {
+        "title": "Mr.",
+        "first": "Nachi",
+        "last": "de Lobo"
+      },
       "email": "wolf@outlook.com",
+      "gender": "male",
+      "registered": {
+        "date": "1986-01-21"
+      },
+      "dob": {
+        "date": "1970-07-20"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "birthday": "1970-20-07",
-      "hire": "1986-21-01"
+      "role": 3
     },
     {
+      "name": {
+        "title": "Mr.",
+        "first": "Ichi",
+        "last": "de Hidra"
+      },
       "email": "hydra@outlook.com",
-      "name": "Ichi de Hidra",
+      "gender": "male",
+      "registered": {
+        "date": "1986-01-22"
+      },
+      "dob": {
+        "date": "1972-02-10"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "hire": "1986-22-01",
-      "birthday": "1972-10-02",
-      "id": 9
+      "role": 3
     },
     {
+      "name": {
+        "title": "Mr.",
+        "first": "Ban",
+        "last": "de Lionet"
+      },
       "email": "lionet@outlook.com",
-      "name": "Ban de Lionet",
+      "gender": "male",
+      "registered": {
+        "date": "1986-01-22"
+      },
+      "dob": {
+        "date": "1972-12-30"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "hire": "1986-22-01",
-      "birthday": "1972-30-12",
-      "id": 10
+      "role": 3
     },
     {
+      "name": {
+        "title": "Mr.",
+        "first": "Geki",
+        "last": "de Urso"
+      },
       "email": "bear@outlook.com",
-      "name": "Geki de Urso",
+      "gender": "male",
+      "registered": {
+        "date": "1986-01-22"
+      },
+      "dob": {
+        "date": "1971-05-15"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "hire": "1986-22-01",
-      "birthday": "1971-15-05",
-      "id": 11
+      "role": 3
     },
     {
+      "name": {
+        "title": "Ms.",
+        "first": "June",
+        "last": "de Camaleão"
+      },
       "email": "chameleon@outlook.com",
-      "name": "June de Camaleão",
+      "gender": "female",
+      "registered": {
+        "date": "1986-01-22"
+      },
+      "dob": {
+        "date": "1974-04-17"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "hire": "1986-22-01",
-      "birthday": "1974-17-04",
-      "id": 12
+      "role": 3
     },
     {
+      "name": {
+        "title": "Mr.",
+        "first": "Mu",
+        "last": "de Jamiel"
+      },
       "email": "aries@outlook.com",
-      "name": "Mu de Jamiel",
+      "gender": "male",
+      "registered": {
+        "date": "1987-01-22"
+      },
+      "dob": {
+        "date": "1966-03-27"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Ouro",
-      "hire": "1987-22-01",
-      "birthday": "1966-27-03",
-      "id": 13
+      "role": 1
     },
     {
+      "name": {
+        "title": "Mr.",
+        "first": "Aldebaran",
+        "last": "de Touro"
+      },
       "email": "taurus@outlook.com",
-      "name": "Aldebaran de Touro",
+      "gender": "male",
+      "registered": {
+        "date": "1987-02-22"
+      },
+      "dob": {
+        "date": "1966-05-08"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Ouro",
-      "hire": "1987-22-02",
-      "birthday": "1966-08-05",
-      "id": 14
+      "role": 1
     },
     {
+      "name": {
+        "title": "Mr.",
+        "first": "Mascara",
+        "last": "da Morte de Cancer"
+      },
       "email": "cancer@outlook.com",
-      "name": "Mascara da Morte de Cancer",
+      "gender": "male",
+      "registered": {
+        "date": "1987-04-22"
+      },
+      "dob": {
+        "date": "1963-06-24"
+      },
+      "phone": "",
+      "cell": "",
       "occupation": "Cavaleiro de Ouro",
-      "hire": "1987-22-04",
-      "birthday": "1963-24-06",
-      "id": 15
+      "role": 1
     }
   ]
 }
