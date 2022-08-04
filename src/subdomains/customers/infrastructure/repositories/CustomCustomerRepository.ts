@@ -2,25 +2,29 @@ import { client } from "../../../../shared/infrastructure/database/postgres";
 import { CustomerRepository } from "../../adapters/repositories/CustomerRepository";
 import { Customer } from "../../domain/Customer";
 
-const BASE_URL = 'https://jsm-challenges.s3.amazonaws.com/frontend-challenge.json'
-const CACHE_KEY = 'customer'
-
 export class CustomCustomerRepository implements CustomerRepository {
-  exists(t: Customer): Promise<boolean> {
+  exists(_t: Customer): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
-  save(t: Customer): Promise<void> {
+  save(_t: Customer): Promise<void> {
     throw new Error("Method not implemented.");
   }
-  remove(t: string): Promise<void | Error> {
+  remove(_t: string): Promise<void | Error> {
     throw new Error("Method not implemented.");
   }
-  getCustomerById(customerId: string): Promise<Customer> {
+  getCustomerById(_customerId: string): Promise<Customer> {
     throw new Error("Method not implemented.");
   }
-  getCustomerByEmail(customerEmail: string): Promise<Customer> {
-    throw new Error("Method not implemented.");
+  
+  async getCustomerByEmail(customerEmail: string): Promise<any> {
+    const result = await client.query(`SELECT * FROM customers WHERE email = '${customerEmail}';`)
+    // const customer = Customer.create({
+    //   name: result.
+    // })
+    console.log({ result: result.rows })
+    return result.rows[0] 
   }
+  
   async getAllCustomers(): Promise<Customer[]> {
     const result = await client.query('SELECT * FROM customers LIMIT 20;')
     
