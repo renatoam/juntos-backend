@@ -1,14 +1,10 @@
 import { Router } from "express";
 import { client } from "../../../../shared/infrastructure/database/postgres";
+import { GetAllCustomersController } from "../controllers/GetAllCustomersController";
 
 const customerRoutes = Router()
 
-customerRoutes.get('/', async (_, response) => {
-  const result = await client.query('SELECT * FROM customers LIMIT 20;')
-  const customers = result.rows
-  
-  response.status(200).send({customers})
-})
+customerRoutes.get('/', new GetAllCustomersController().run)
 
 customerRoutes.post('/', (request, response) => {
   const data = request.body
