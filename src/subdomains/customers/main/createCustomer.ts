@@ -1,8 +1,8 @@
 import { CreateCustomerController } from "../infrastructure/controllers/CreateCustomerController"
-import { AxiosCustomerRepository } from "../infrastructure/repositories/AxiosCustomerRepository"
+import { CustomCustomerRepository } from "../infrastructure/repositories/CustomCustomerRepository"
 import { CreateCustomerUseCase } from "../useCases/createCustomer"
 
-const customerRepository = new AxiosCustomerRepository()
+const customerRepository = new CustomCustomerRepository()
 const createCustomerUseCase = new CreateCustomerUseCase(customerRepository)
 const createCustomerController = new CreateCustomerController(createCustomerUseCase)
 

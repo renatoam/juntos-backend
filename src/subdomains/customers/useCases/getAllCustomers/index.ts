@@ -1,6 +1,7 @@
 import { client } from "../../../../shared/infrastructure/database/postgres"
 import { Customer } from "../../domain/Customer"
 import { CustomerProps } from "../../domain/CustomerProps"
+import { CustomCustomerRepository } from "../../infrastructure/repositories/CustomCustomerRepository"
 
 export class GetAllCustomersUseCase {
   // private customerRepo: AxiosCustomerRepository
@@ -10,8 +11,8 @@ export class GetAllCustomersUseCase {
   // }
 
   async execute(_request?: CustomerProps): Promise<Customer[] | null> {
-    const result = await client.query('SELECT * FROM customers LIMIT 20;')
+    const customerRepository = new CustomCustomerRepository()
     
-    return result.rows
+    return customerRepository.getAllCustomers()
   }
 }

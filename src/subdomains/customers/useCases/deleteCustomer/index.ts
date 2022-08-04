@@ -1,10 +1,10 @@
-import { AxiosCustomerRepository } from "../../infrastructure/repositories/AxiosCustomerRepository";
+import { CustomCustomerRepository } from "../../infrastructure/repositories/CustomCustomerRepository";
 
 
 export class DeleteCustomerUseCase {
-  private customerRepo: AxiosCustomerRepository
+  private customerRepo: CustomCustomerRepository
 
-  constructor(customerRepo: AxiosCustomerRepository) {
+  constructor(customerRepo: CustomCustomerRepository) {
     this.customerRepo = customerRepo
   }
 
