@@ -1,4 +1,4 @@
-import { PersonProps, PersonType } from "../types"
+import { PersonProps } from "../types"
 import { v4 as uuid } from 'uuid'
 import { VIEWER_ROLE_ID } from "../constants"
 
@@ -22,7 +22,7 @@ export function extractPersonData(item: PersonProps, locationId: number) {
     locationId + 1
   ]
 
-  if (item.type === PersonType.employees)
+  if (item.type === 'employees')
     extractedData.push(item.occupation)
 
   return extractedData

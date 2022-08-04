@@ -34,6 +34,22 @@ You should develop:
     ☐ Adjust all the paths to relative
     ☐ Check calls via Insomnia
     ☐ Criar cenários com BDD
+  
+  Customers:
+    ✔ Listar e criar todos as features @done(22-05-17 08:13)
+    ☐ * Checar as features
+    ☐ Mudar estrutura de pastas e deixar por feature
+    ☐ Create Customer
+    ☐ Get Customer by Email
+    ☐ Get All Customers
+    ☐ Get Many Customers (filter)
+    ☐ Update Customer
+    ☐ Remove Customer
+    ☐ Remove Many (filter)
+    ☐ Implement Base Controller
+    ☐ Adjust all the paths to relative
+    ☐ Check calls via Insomnia
+    ☐ Criar cenários com BDD
     
     * pra concluir a feature, preciso finalizar:
       ☐ Value Objects (https://khalilstemmler.com/articles/typescript-value-object/)

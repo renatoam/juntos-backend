@@ -2,6 +2,8 @@ import { PictureType } from "../../subdomains/customers/domain/CustomerProps"
 import { CustomerEmail } from "../../subdomains/customers/domain/valueObjects/CustomerEmail"
 import { Occupation } from "../../subdomains/employees/types"
 
+export type IdentifierType = string | number
+
 export enum RequestMethods {
   GET = 'get',
   POST = 'post',
@@ -52,10 +54,7 @@ export type RegisteredType = {
   age: number
 }
 
-export enum PersonType  {
-  customers = 'customers',
-  employees = 'employees'
-}
+export type PersonType = 'customers' | 'employees'
 
 export interface PersonProps {
   type: PersonType
