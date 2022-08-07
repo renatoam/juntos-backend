@@ -12,8 +12,11 @@ export class CustomCustomerRepository implements CustomerRepository {
     
     await client.query(query)
   }
-  exists(_t: Customer): Promise<boolean> {
-    throw new Error("Method not implemented.");
+
+  async exists(customerEmail: string): Promise<boolean> {
+    const result = await client.query(`SELECT * FROM customers WHERE email = '${customerEmail}';`)
+
+    return !!result.rows.length
   }
   save(_t: Customer): Promise<void> {
     throw new Error("Method not implemented.");
@@ -27,10 +30,7 @@ export class CustomCustomerRepository implements CustomerRepository {
   
   async getCustomerByEmail(customerEmail: string): Promise<any> {
     const result = await client.query(`SELECT * FROM customers WHERE email = '${customerEmail}';`)
-    // const customer = Customer.create({
-    //   name: result.
-    // })
-    console.log({ result: result.rows })
+
     return result.rows[0] 
   }
   
