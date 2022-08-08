@@ -39,6 +39,23 @@ export class Customer extends Entity<CustomerProps> {
     return this.props.picture
   }
 
+  get occupation() {
+    return this.props.occupation
+  }
+
+  get type() {
+    return this.props.type
+  }
+
+  
+  get role_id() {
+    return this.props.role_id
+  }
+
+  get id() {
+    return this._id
+  }
+
   private constructor(props: CustomerProps, id?: IdentifierType) {
     super(props, id)
   }
