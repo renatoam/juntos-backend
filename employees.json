@@ -17,7 +17,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Deusa da Guerra e da Sabedoria",
-      "role": 1
+      "role": 1,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -36,7 +42,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 2
+      "role": 2,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -55,7 +67,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 2
+      "role": 2,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -74,7 +92,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 2
+      "role": 2,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -93,7 +117,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 2
+      "role": 2,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -112,7 +142,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 2
+      "role": 2,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -131,7 +167,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 3
+      "role": 3,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -150,7 +192,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 3
+      "role": 3,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -169,7 +217,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 3
+      "role": 3,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -188,7 +242,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 3
+      "role": 3,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -207,7 +267,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 3
+      "role": 3,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -226,7 +292,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Bronze",
-      "role": 3
+      "role": 3,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -245,7 +317,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Ouro",
-      "role": 1
+      "role": 1,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -264,7 +342,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Ouro",
-      "role": 1
+      "role": 1,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     },
     {
       "name": {
@@ -283,7 +367,13 @@
       "phone": "",
       "cell": "",
       "occupation": "Cavaleiro de Ouro",
-      "role": 1
+      "role": 1,
+      "picture": {
+        "thumbnail": null,
+        "medium": null,
+        "large": null
+      },
+      "type": "employees"
     }
   ]
 }
