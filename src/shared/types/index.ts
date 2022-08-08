@@ -1,5 +1,3 @@
-import { PictureType } from "../../subdomains/customers/domain/CustomerProps"
-import { CustomerEmail } from "../../subdomains/customers/domain/valueObjects/CustomerEmail"
 import { Occupation } from "../../subdomains/employees/types"
 
 export type IdentifierType = string | number
@@ -54,19 +52,25 @@ export type RegisteredType = {
   age: number
 }
 
+export type PictureType = {
+  large: string
+  medium: string
+  thumbnail: string
+}
+
 export type PersonType = 'customers' | 'employees'
 
 export interface PersonProps {
   type: PersonType
-  gender?: string
+  gender: string
   name: NameType
-  location?: LocationType
-  email?: CustomerEmail
-  dob?: DobType
-  registered?: RegisteredType
-  phone?: string
-  cell?: string
-  role?: string
-  occupation?: Occupation
-  picture?: PictureType
+  location: LocationType
+  email: string
+  dob: DobType
+  registered: RegisteredType
+  phone: string
+  cell: string
+  role_id: string
+  occupation: Occupation
+  picture: PictureType
 }
