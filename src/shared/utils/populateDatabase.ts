@@ -6,14 +6,22 @@ export async function populateDatabase() {
   try {
     await insertInitialLocationData('customers', INSERT_DYNAMIC_LOCATION)
   } catch (error) {
-    console.error(INSERTING_DATA_ERROR)
+    console.error({
+      source: 'Inserting location',
+      message: INSERTING_DATA_ERROR,
+      details: error
+    })
   }
 
   try {
     await insertInitialPersonData('customers', INSERT_DYNAMIC_CUSTOMER)
     await insertInitialPersonData('employees', INSERT_DYNAMIC_EMPLOYEE)
   } catch (error) {
-    console.error(INSERTING_DATA_ERROR)
+    console.error({
+      source: 'Inserting customers and employees',
+      message: INSERTING_DATA_ERROR,
+      details: error
+    })
   }
 }
 

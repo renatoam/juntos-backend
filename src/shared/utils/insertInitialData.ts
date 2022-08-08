@@ -6,9 +6,9 @@ import { readLocalFile } from "./readLocalFile"
 export async function insertInitialPersonData(personType: PersonType, query: string) {
   const fileData = readLocalFile<PersonProps>(personType)
 
-  fileData?.forEach(async (item, index) => {
+  fileData?.forEach(async item => {
     try {
-      const extractedData = extractPersonData(item, index)
+      const extractedData = extractPersonData(item)
       await client.query(query, extractedData)
     } catch (error) {
       console.error({ error })
@@ -19,7 +19,7 @@ export async function insertInitialPersonData(personType: PersonType, query: str
 export async function insertInitialLocationData(personType: PersonType, query: string) {
   const fileData = readLocalFile<PersonProps>(personType)
 
-  fileData.forEach(async (item) => {
+  fileData.forEach(async item => {
     try {
       const extractData = extractLocationData(item)
       await client.query(query, extractData)

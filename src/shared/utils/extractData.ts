@@ -2,7 +2,7 @@ import { PersonProps } from "../types"
 import { v4 as uuid } from 'uuid'
 import { VIEWER_ROLE_ID } from "../constants"
 
-export function extractPersonData(item: PersonProps, locationId: number) {
+export function extractPersonData(item: PersonProps) {
   const extractedData = [
     uuid(),
     Date.now(),
@@ -18,8 +18,7 @@ export function extractPersonData(item: PersonProps, locationId: number) {
     item.picture?.thumbnail,
     item.picture?.medium,
     item.picture?.large,
-    item.role || VIEWER_ROLE_ID,
-    locationId + 1
+    item.role_id || VIEWER_ROLE_ID
   ]
 
   if (item.type === 'employees')
@@ -30,6 +29,7 @@ export function extractPersonData(item: PersonProps, locationId: number) {
 
 export function extractLocationData(item: PersonProps) {
   return [
+    uuid(),
     item.location?.street,
     item.location?.city,
     item.location?.state,
