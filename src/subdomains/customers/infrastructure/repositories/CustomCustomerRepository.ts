@@ -1,6 +1,7 @@
 import { client } from "../../../../shared/infrastructure/database/postgres";
 import { CustomerRepository } from "../../adapters/repositories/CustomerRepository";
 import { Customer } from "../../domain/Customer";
+import { CustomerMapper } from "../mappers/CustomerMapper";
 
 type FieldType = keyof Customer
 
@@ -18,9 +19,16 @@ export class CustomCustomerRepository implements CustomerRepository {
 
     return !!result.rows.length
   }
-  save(_t: Customer): Promise<void> {
-    throw new Error("Method not implemented.");
+  
+  async save(customer: Customer): Promise<void> {
+    const newCustomer = CustomerMapper.toPersistence(customer)
+    const insertQueryFields = Object.keys(newCustomer)
+    const insertQueryValues = Object.values(newCustomer).map(value => `'${value}'`)
+    const query = `INSERT INTO customers(${insertQueryFields}) VALUES(${insertQueryValues});`
+
+    await client.query(query)
   }
+
   remove(_t: string): Promise<void> {
     throw new Error("Method not implemented.");
   }
