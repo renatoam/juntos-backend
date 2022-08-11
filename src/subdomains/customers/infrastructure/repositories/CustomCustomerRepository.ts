@@ -29,9 +29,13 @@ export class CustomCustomerRepository implements CustomerRepository {
     await client.query(query)
   }
 
-  remove(_t: string): Promise<void> {
-    throw new Error("Method not implemented.");
+  async remove(customerEmail: string): Promise<boolean> {
+    const query = `DELETE FROM customers WHERE email = '${customerEmail}';`
+    const response = await client.query(query)
+
+    return !!response.rowCount
   }
+
   getCustomerById(_customerId: string): Promise<Customer> {
     throw new Error("Method not implemented.");
   }
