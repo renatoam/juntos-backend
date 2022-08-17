@@ -2,12 +2,6 @@ import { Customer } from "../../domain/Customer";
 import { CustomCustomerRepository } from "../../infrastructure/repositories/CustomCustomerRepository";
 
 export class UpdateCustomerUseCase {
-  // private customerRepo: CustomCustomerRepository
-
-  // constructor(customerRepo: CustomCustomerRepository) {
-  //   this.customerRepo = customerRepo
-  // }
-
   async execute(customerEmail: string, fieldsToUpdate: Partial<Customer>): Promise<Customer | Error> {
     const customerRepository = new CustomCustomerRepository()
     const doesCustomerExists = await customerRepository.exists(customerEmail)

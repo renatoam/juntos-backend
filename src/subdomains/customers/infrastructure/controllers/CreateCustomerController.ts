@@ -1,54 +1,49 @@
 import { Request, Response } from "express";
-import { client } from "../../../../shared/infrastructure/database/postgres";
-import { LocationMapper } from "../../../../shared/infrastructure/mappers/LocationMapper";
-import { Customer } from "../../domain/Customer";
-import { CustomCustomerRepository } from "../repositories/CustomCustomerRepository";
+import { CreateCustomerUseCase } from "../../useCases/createCustomer";
+import { CreateCustomerDTO } from "../dtos/CreateCustomerDTO";
 
 export class CreateCustomerController {
   async run(request: Request, response: Response) {
-    const data = request.body as Customer
-    const customerRepository = new CustomCustomerRepository()
-    const doesCustomerExists = await customerRepository.exists(data.email)
-  
-    if (doesCustomerExists) return response.status(409).json({
-      description: 'Conflict',
-      message: 'Customer already exists!'
-    })
-  
-    const location = LocationMapper.toPersistence(data.location)
-    const insertQueryFields = Object.keys(location).join(',')
-    const insertQueryValues = Object.values(location).map(value => `'${value}'`).join(',')
-  
-    const newCustomer = Customer.create({
-      name: data.name,
-      type: 'customers',
-      cell: data.cell,
-      dob: data.dob,
-      email: data.email,
-      gender: data.gender,
-      location: data.location,
-      occupation: data.occupation,
-      phone: data.phone,
-      picture: data.picture,
-      registered: data.registered,
-      role_id: data.role_id
-    })
-  
-    await client
-    .query(`INSERT INTO locations(${insertQueryFields}) VALUES (${insertQueryValues});`)
-  await client
-    .query(`INSERT INTO locations_customers(location_id, customer_id) VALUES ('${location.location_id}', '${newCustomer.id}');`)
-  
+    const createCustomerDTO = request.body as CreateCustomerDTO
+    const createCustomerUseCase = new CreateCustomerUseCase()
+
     try {
-      await customerRepository.save(newCustomer)
-      const customer = await customerRepository.getCustomerByEmail(newCustomer.email)
-  
+      const customer = await createCustomerUseCase.execute(createCustomerDTO)
+
       return response.status(200).json({
         message: 'Customer successfully created!',
         customer
       })
     } catch (error) {
-      return response.status(500).json(`Error on creating customer: ${error}`)
+      const decodedError = error as Error
+      const errorDescription = decodedError.message.toLowerCase()
+
+      switch (errorDescription) {
+        case 'conflict':
+          return response.status(409).json({
+            status: 409,
+            description: decodedError.stack,
+            message: 'Customer already exists!'
+          })
+        case 'location':
+          return response.status(500).json({
+            status: 500,
+            description: decodedError.stack,
+            message: 'Error on saving location.'
+          })
+        case 'create':
+          return response.status(500).json({
+            status: 500,
+            description: decodedError.stack,
+            message: 'Error on creating new customer.'
+          })
+        default:
+          return response.status(500).json({
+            status: 500,
+            description: decodedError.stack,
+            message: 'Error on trying to create customer.'
+          })
+      }
     }
-  }
+  }   
 }

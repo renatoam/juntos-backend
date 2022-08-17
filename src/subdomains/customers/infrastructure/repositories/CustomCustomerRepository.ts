@@ -1,5 +1,5 @@
 import { client } from "../../../../shared/infrastructure/database/postgres";
-import { CustomerRepository } from "../../adapters/repositories/CustomerRepository";
+import { CustomerRepository } from "./CustomerRepository";
 import { Customer } from "../../domain/Customer";
 import { CustomerMapper } from "../mappers/CustomerMapper";
 
@@ -43,6 +43,18 @@ export class CustomCustomerRepository implements CustomerRepository {
   async getCustomerByEmail(customerEmail: string): Promise<any> {
     const result = await client.query(`SELECT * FROM customers WHERE email = '${customerEmail}';`)
 
+    // Se precisar consultar ooutro banco ou outra tabela, também faço aqui
+    // Organizo todos esses dados numa coisa só através de um DTO
+
+    // On save(), check if the entity already exists and then perform the create or update.
+    // With respect to doing the "create if not exists, else update", that's the type of complex data access logic that we don't want any other constructs in our domain to have to know about: only the repos should care about that.
+    // https://khalilstemmler.com/articles/typescript-domain-driven-design/repository-dto-mapper/
+    // lançar um DTO NA CONTROLLERS: persistencia pra domain
+
+    // Criar o mapper aqui
+    // From Domain to DTO
+    // From Domain to Persistence
+    // From Persistence to Domain
     return result.rows[0] 
   }
   

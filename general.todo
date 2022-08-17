@@ -18,38 +18,6 @@ You should develop:
       Tag the commit with this command: `git tag -a M1 e3afd034 -m "Tag Message"`
       Specify the tag in the git push command:: `git push origin M1`
     ☐ Configurar Docker
-  
-  Employees:
-    ✔ Listar e criar todos as features @done(22-05-17 08:13)
-    ☐ * Checar as features
-    ☐ Mudar estrutura de pastas e deixar por feature
-    ☐ Create Employee
-    ☐ Get Employee by Email
-    ☐ Get All Employees
-    ☐ Get Many Employees (filter)
-    ☐ Update Employee
-    ☐ Remove Employee
-    ☐ Remove Many (filter)
-    ☐ Implement Base Controller
-    ☐ Adjust all the paths to relative
-    ☐ Check calls via Insomnia
-    ☐ Criar cenários com BDD
-  
-  Customers:
-    ✔ Listar e criar todos as features @done(22-05-17 08:13)
-    ☐ * Checar as features
-    ☐ Mudar estrutura de pastas e deixar por feature
-    ☐ Create Customer
-    ☐ Get Customer by Email
-    ☐ Get All Customers
-    ☐ Get Many Customers (filter)
-    ☐ Update Customer
-    ☐ Remove Customer
-    ☐ Remove Many (filter)
-    ☐ Implement Base Controller
-    ☐ Adjust all the paths to relative
-    ☐ Check calls via Insomnia
-    ☐ Criar cenários com BDD
     
     * pra concluir a feature, preciso finalizar:
       ☐ Value Objects (https://khalilstemmler.com/articles/typescript-value-object/)

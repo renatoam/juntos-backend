@@ -1,0 +1,63 @@
+You should develop:
+  
+  Employees:
+    ✔ Listar e criar todos as features @done(22-05-17 08:13)
+    ✔ Checar as features @done(22-08-11 18:04)
+    ✔ Mudar estrutura de pastas e deixar por feature @done(22-08-11 18:04)
+    ☐ Create Employee
+      ☐ Domain
+        ☐ Entity
+        ☐ Interface
+      ☐ Rota
+      ☐ Controller
+      ☐ UseCase
+      ☐ Repository
+      ☐ Mapper
+        ☐ toPersistence
+        ☐ toDomain
+    ☐ Get Employee by Email
+      ☐ Domain
+        ☐ Entity
+        ☐ Interface
+      ☐ Rota
+      ☐ Controller
+      ☐ UseCase
+      ☐ Repository
+      ☐ Mapper
+        ☐ toPersistence
+        ☐ toDomain
+    ☐ Get All Employees
+      ☐ Domain
+        ☐ Entity
+        ☐ Interface
+      ☐ Rota
+      ☐ Controller
+      ☐ UseCase
+      ☐ Repository
+      ☐ Mapper
+        ☐ toPersistence
+        ☐ toDomain
+    ☐ Update Employee
+      ☐ Domain
+        ☐ Entity
+        ☐ Interface
+      ☐ Rota
+      ☐ Controller
+      ☐ UseCase
+      ☐ Repository
+      ☐ Mapper
+        ☐ toPersistence
+        ☐ toDomain
+    ☐ Remove Employee
+      ☐ Domain
+        ☐ Entity
+        ☐ Interface
+      ☐ Rota
+      ☐ Controller
+      ☐ UseCase
+      ☐ Repository
+      ☐ Mapper
+        ☐ toPersistence
+        ☐ toDomain
+    ☐ Implement Base Controller
+  

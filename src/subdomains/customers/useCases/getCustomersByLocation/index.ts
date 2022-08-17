@@ -1,4 +1,4 @@
-import { CustomerRepository } from "../../adapters/repositories/CustomerRepository";
+import { CustomerRepository } from "../../infrastructure/repositories/CustomerRepository";
 import { Customer } from "../../domain/Customer";
 import { GetCustomerByLocationDTO } from "./GetCustomersByLocationDTO";
 
@@ -9,7 +9,7 @@ export class GetCustomerbyLocationUseCase {
     this.customerRepo = customerRepo
   }
 
-  async execute(customersLocation: GetCustomerByLocationDTO): Promise<Customer[] | null> {
-    return await this.customerRepo.getCustomersByLocation(customersLocation)
+  async execute(_customersLocation: GetCustomerByLocationDTO): Promise<Customer[] | null> {
+    return null
   }
 }

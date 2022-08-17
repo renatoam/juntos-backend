@@ -1,0 +1,79 @@
+You should develop:
+
+  Customer:
+  
+  ☐ Filter by state;
+  ☐ Search by name and/or last name;
+  ☐ Pagination to navigate between cards;
+  ☐ Navigation when clicking on customer cards;
+  ☐ An internal page with more details of customers (use your creativity);
+  ☐ We'll be happy (😍) if you write tests for it.
+  
+  Customers:
+    ✔ Listar e criar todos as features @done(22-05-17 08:13)
+    ✔ Checar as features @done(22-08-11 18:04)
+      ✔ Mudar estrutura de pastas e deixar por feature @done(22-08-11 18:04)
+    ☐ Create Customer
+      ✔ Domain @done(22-08-11 18:18)
+        ✔ Entity @done(22-08-11 18:18)
+        ✔ Interface @done(22-08-11 18:18)
+      ✔ Rota @done(22-08-11 18:18)
+      ✔ Controller @done(22-08-11 18:18)
+      ✔ UseCase @done(22-08-16 22:41)
+      ✔ Repository @done(22-08-11 18:19)
+      ☐ Mapper
+        ☐ toPersistence (Customer)
+        ☐ toDomain (Customer)
+        ✔ toPersistence (Location) @done(22-08-11 18:21)
+        ☐ toDomain (Location)
+      ☐ Dependency Injection (feature)
+    ☐ Get Customer by Email
+      ✔ Domain @done(22-08-11 19:09)
+        ✔ Entity @done(22-08-11 19:09)
+        ✔ Interface @done(22-08-11 19:09)
+      ✔ Rota @done(22-08-11 19:09)
+      ✔ Controller @done(22-08-11 19:09)
+      ✔ UseCase @done(22-08-11 19:10)
+      ✔ Repository @done(22-08-11 19:10)
+      ☐ Mapper
+        ☐ toPersistence
+        ☐ toDomain
+      ☐ Dependency Injection (feature)
+    ☐ Get All Customers
+      ✔ Domain @done(22-08-11 19:11)
+        ✔ Entity @done(22-08-11 19:11)
+        ✔ Interface @done(22-08-11 19:11)
+      ✔ Rota @done(22-08-11 19:11)
+      ✔ Controller @done(22-08-11 19:11)
+      ✔ UseCase @done(22-08-11 19:15)
+      ✔ Repository @done(22-08-11 19:15)
+      ☐ Mapper
+        ☐ toPersistence
+        ☐ toDomain
+      ☐ Dependency Injection (feature)
+    ☐ Update Customer
+      ✔ Domain @done(22-08-11 19:15)
+        ✔ Entity @done(22-08-11 19:15)
+        ✔ Interface @done(22-08-11 19:15)
+      ✔ Rota @done(22-08-11 19:15)
+      ✔ Controller @done(22-08-11 19:15)
+      ✔ UseCase @done(22-08-11 19:15)
+      ✔ Repository @done(22-08-11 19:16)
+      ☐ Mapper
+        ☐ toPersistence
+        ☐ toDomain
+      ☐ Dependency Injection (feature)
+    ☐ Remove Customer
+      ✔ Domain @done(22-08-11 19:16)
+        ✔ Entity @done(22-08-11 19:16)
+        ✔ Interface @done(22-08-11 19:16)
+      ✔ Rota @done(22-08-11 19:16)
+      ✔ Controller @done(22-08-11 19:16)
+      ☐ UseCase
+      ✔ Repository @done(22-08-11 19:16)
+      ☐ Mapper
+        ☐ toPersistence
+        ☐ toDomain
+      ☐ Dependency Injection (feature)
+    ☐ Implement Base Controller
+  

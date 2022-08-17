@@ -4,7 +4,7 @@ import { CreateCustomerUseCase } from "../useCases/createCustomer"
 
 const customerRepository = new CustomCustomerRepository()
 const createCustomerUseCase = new CreateCustomerUseCase(customerRepository)
-const createCustomerController = new CreateCustomerController(createCustomerUseCase)
+const createCustomerController = new CreateCustomerController()
 
 export { customerRepository, createCustomerController, createCustomerUseCase }
 
