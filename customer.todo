@@ -22,11 +22,13 @@ You should develop:
       ✔ UseCase @done(22-08-16 22:41)
       ✔ Repository @done(22-08-11 18:19)
       ☐ Mapper
-        ☐ toPersistence (Customer)
-        ☐ toDomain (Customer)
+        ✔ toPersistence (Customer) @done(22-08-17 19:13)
+        ✔ toDomain (Customer) @done(22-08-17 21:11)
         ✔ toPersistence (Location) @done(22-08-11 18:21)
-        ☐ toDomain (Location)
+        ✔ toDomain (Location) @done(22-08-17 21:12) @lasted(13s)
+        ☐ toDTO (Customer)
       ☐ Dependency Injection (feature)
+      ☐ Remover location criada se create customer der errado
     ☐ Get Customer by Email
       ✔ Domain @done(22-08-11 19:09)
         ✔ Entity @done(22-08-11 19:09)
@@ -76,4 +78,8 @@ You should develop:
         ☐ toDomain
       ☐ Dependency Injection (feature)
     ☐ Implement Base Controller
+
+  // On save(), check if the entity already exists and then perform the create or update.
+  // With respect to doing the "create if not exists, else update", that's the type of complex data access logic that we don't want any other constructs in our domain to have to know about: only the repos should care about that.
+  // https://khalilstemmler.com/articles/typescript-domain-driven-design/repository-dto-mapper/
   

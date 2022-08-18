@@ -1,5 +1,4 @@
 import { DobType, LocationType, NameType, PersonType, PictureType, RegisteredType } from "../../../../shared/types"
-import { Occupation } from "../../../employees/types"
 
 export interface CreateCustomerDTO {
   type: PersonType
@@ -12,6 +11,5 @@ export interface CreateCustomerDTO {
   phone: string
   cell: string
   role_id: string
-  occupation: Occupation
   picture: PictureType
 }

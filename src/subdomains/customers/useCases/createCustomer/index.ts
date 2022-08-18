@@ -6,7 +6,7 @@ import { CreateCustomerDTO } from "../../infrastructure/dtos/CreateCustomerDTO";
 import { CustomCustomerRepository } from "../../infrastructure/repositories/CustomCustomerRepository";
 
 export class CreateCustomerUseCase {
-  async execute(createCustomerDTO: CreateCustomerDTO): Promise<Customer> {
+  async execute(createCustomerDTO: CreateCustomerDTO): Promise<Customer | string> {
     const customerRepository = new CustomCustomerRepository()
     const doesCustomerExists = await customerRepository.exists(createCustomerDTO.email)
   
@@ -20,7 +20,6 @@ export class CreateCustomerUseCase {
       email: createCustomerDTO.email,
       gender: createCustomerDTO.gender,
       location: createCustomerDTO.location,
-      occupation: createCustomerDTO.occupation,
       phone: createCustomerDTO.phone,
       picture: createCustomerDTO.picture,
       registered: createCustomerDTO.registered,
