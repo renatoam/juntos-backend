@@ -43,7 +43,10 @@ export class Customer extends Entity<CustomerProps> {
     return this.props.type
   }
 
-  
+  get role() {
+    return this.props.role
+  }
+
   get role_id() {
     return this.props.role_id
   }

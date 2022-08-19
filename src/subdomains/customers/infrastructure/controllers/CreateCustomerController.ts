@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { CreateCustomerUseCase } from "../../useCases/createCustomer";
+import { CreateCustomerUseCase } from "../../useCases/createCustomer/CreateCustomerUseCase";
 import { CreateCustomerDTO } from "../dtos/CreateCustomerDTO";
+import { CustomerMapper } from "../mappers/CustomerMapper";
 
 export class CreateCustomerController {
   async run(request: Request, response: Response) {
@@ -12,7 +13,7 @@ export class CreateCustomerController {
 
       return response.status(200).json({
         message: 'Customer successfully created!',
-        customer
+        customer: CustomerMapper.toDTO(customer)
       })
     } catch (error) {
       const decodedError = error as Error
@@ -36,6 +37,12 @@ export class CreateCustomerController {
             status: 500,
             description: decodedError.stack,
             message: 'Error on creating new customer.'
+          })
+        case 'retrieve':
+          return response.status(500).json({
+            status: 500,
+            description: decodedError.stack,
+            message: 'Customer created, but was not possible retrieve the new customer.'
           })
         default:
           return response.status(500).json({

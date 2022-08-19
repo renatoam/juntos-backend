@@ -6,7 +6,7 @@ import { CreateCustomerDTO } from "../../infrastructure/dtos/CreateCustomerDTO";
 import { CustomCustomerRepository } from "../../infrastructure/repositories/CustomCustomerRepository";
 
 export class CreateCustomerUseCase {
-  async execute(createCustomerDTO: CreateCustomerDTO): Promise<Customer | string> {
+  async execute(createCustomerDTO: CreateCustomerDTO): Promise<Customer> {
     const customerRepository = new CustomCustomerRepository()
     const doesCustomerExists = await customerRepository.exists(createCustomerDTO.email)
   
@@ -49,7 +49,7 @@ export class CreateCustomerUseCase {
       try {
         customer = await customerRepository.getCustomerByEmail(newCustomer.email)
       } catch (error) {
-        customer = 'It was not possible retrieve the new customer.'
+        throw new Error('Retrieve')
       }
   
       return customer

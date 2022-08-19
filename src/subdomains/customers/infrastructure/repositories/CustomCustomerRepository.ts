@@ -47,7 +47,16 @@ export class CustomCustomerRepository implements CustomerRepository {
     const locationResult = await client.query(`SELECT * FROM locations INNER JOIN locations_customers USING(location_id) INNER JOIN customers USING(customer_id) WHERE customer_id = '${rawCustomer.customer_id}';`)
     const rawLocation = locationResult.rows[0]
 
-    return CustomerMapper.toDomain(rawCustomer, rawLocation)
+    const rolesResult = await client.query(`SELECT * FROM roles WHERE role_id = '${rawCustomer.role_id}';`)
+    const rawRole = rolesResult.rows[0]
+
+    const persistenceCustomer = {
+      ...rawCustomer,
+      ...rawLocation,
+      ...rawRole
+    }
+
+    return CustomerMapper.toDomain(persistenceCustomer)
   }
   
   async getAllCustomers(): Promise<Customer[]> {
