@@ -49,47 +49,47 @@ export class CustomerMapper {
     }
   }
 
-  public static toDomain(persistenceCustomer: Record<string, never>): Customer {
+  public static toDomain(rawCustomer: Record<string, never>): Customer {
     return Customer.create({
       name: {
-        title: persistenceCustomer.title,
-        first: persistenceCustomer.first_name,
-        last: persistenceCustomer.last_name,
+        title: rawCustomer.title,
+        first: rawCustomer.first_name,
+        last: rawCustomer.last_name,
       },
       type: 'customers',
-      cell: persistenceCustomer.cell,
+      cell: rawCustomer.cell,
       dob: {
         age: 0,
-        date: new Date(persistenceCustomer.birth_date)
+        date: new Date(rawCustomer.birth_date)
       },
-      email: persistenceCustomer.email,
-      gender: persistenceCustomer.gender,
+      email: rawCustomer.email,
+      gender: rawCustomer.gender,
       location: {
-        street: persistenceCustomer.street,
-        city: persistenceCustomer.city,
-        state: persistenceCustomer.state,
-        postcode: persistenceCustomer.postcode,
+        street: rawCustomer.street,
+        city: rawCustomer.city,
+        state: rawCustomer.state,
+        postcode: rawCustomer.postcode,
         coordinates: {
-          latitude: persistenceCustomer.latitude,
-          longitude: persistenceCustomer.longitude,
+          latitude: rawCustomer.latitude,
+          longitude: rawCustomer.longitude,
         },
         timezone: {
-          description: persistenceCustomer.description,
-          offset: persistenceCustomer.off
+          description: rawCustomer.description,
+          offset: rawCustomer.off
         }
       },
-      phone: persistenceCustomer.phone,
+      phone: rawCustomer.phone,
       picture: {
-        large: persistenceCustomer.large,
-        medium: persistenceCustomer.medium,
-        thumbnail: persistenceCustomer.thumbnail
+        large: rawCustomer.large,
+        medium: rawCustomer.medium,
+        thumbnail: rawCustomer.thumbnail
       },
       registered: {
         age: 0,
-        date: new Date(persistenceCustomer.registered)
+        date: new Date(rawCustomer.registered)
       },
-      role_id: persistenceCustomer.role_id,
-      role: persistenceCustomer.role
+      role_id: rawCustomer.role_id,
+      role: rawCustomer.role
     })
   }
 }

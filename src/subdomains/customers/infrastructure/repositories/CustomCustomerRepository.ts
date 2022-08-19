@@ -41,27 +41,15 @@ export class CustomCustomerRepository implements CustomerRepository {
   }
   
   async getCustomerByEmail(customerEmail: string): Promise<Customer> {
-    const customerResult = await client.query(`SELECT * FROM customers WHERE email = '${customerEmail}';`)
+    const customerResult = await client.query(`SELECT * FROM customers INNER JOIN locations_customers USING(customer_id) INNER JOIN locations USING(location_id) INNER JOIN roles USING(role_id) WHERE customers.email = '${customerEmail}';`)
     const rawCustomer = customerResult.rows[0]
 
-    const locationResult = await client.query(`SELECT * FROM locations INNER JOIN locations_customers USING(location_id) INNER JOIN customers USING(customer_id) WHERE customer_id = '${rawCustomer.customer_id}';`)
-    const rawLocation = locationResult.rows[0]
-
-    const rolesResult = await client.query(`SELECT * FROM roles WHERE role_id = '${rawCustomer.role_id}';`)
-    const rawRole = rolesResult.rows[0]
-
-    const persistenceCustomer = {
-      ...rawCustomer,
-      ...rawLocation,
-      ...rawRole
-    }
-
-    return CustomerMapper.toDomain(persistenceCustomer)
+    return CustomerMapper.toDomain(rawCustomer)
   }
   
   async getAllCustomers(): Promise<Customer[]> {
-    const result = await client.query('SELECT * FROM customers LIMIT 20;')
-    
-    return result.rows
+    const result = await client.query('SELECT * FROM customers INNER JOIN locations_customers USING(customer_id) INNER JOIN locations USING(location_id) LIMIT 20;')
+
+    return result.rows.map(customer => CustomerMapper.toDomain(customer))
   }
 }

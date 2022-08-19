@@ -21,12 +21,12 @@ You should develop:
       ✔ Controller @done(22-08-11 18:18)
       ✔ UseCase @done(22-08-16 22:41)
       ✔ Repository @done(22-08-11 18:19)
-      ☐ Mapper
+      ✔ Mapper @done(22-08-18 21:36)
         ✔ toPersistence (Customer) @done(22-08-17 19:13)
         ✔ toDomain (Customer) @done(22-08-17 21:11)
         ✔ toPersistence (Location) @done(22-08-11 18:21)
         ✔ toDomain (Location) @done(22-08-17 21:12) @lasted(13s)
-        ☐ toDTO (Customer)
+        ✔ toDTO (Customer) @done(22-08-18 21:36)
       ☐ Dependency Injection (feature)
       ☐ Remover location criada se create customer der errado
     ☐ Get Customer by Email
