@@ -19,12 +19,12 @@ export async function runMigrations() {
     try {
       await client.query(file.toString())
     } catch (error) {
-      console.error('Something went wrong on trying read migration file.', {
+      console.error('Error on reading file.', {
         readingFile: file,
         error
       })
 
-      return error
+      throw Error(`Something went wrong on trying read migration file. Details: ${error}`)
     }
   })
 }

@@ -1,28 +1,45 @@
+import { Person } from "../domain/Person"
 import { client } from "../infrastructure/database/postgres"
-import { PersonProps, PersonType } from "../types"
-import { extractLocationData, extractPersonData } from "./extractData"
-import { readLocalFile } from "./readLocalFile"
+import { extractLocationCustomerData, extractLocationData, extractPersonData } from "./extractData"
 
-export async function insertInitialPersonData(personType: PersonType, query: string) {
-  const fileData = readLocalFile<PersonProps>(personType)
-
-  fileData?.forEach(async item => {
+export async function insertInitialEmployeeData(query: string, personCollection: Person) {
+  personCollection.employees.forEach(async employee => {
     try {
-      const extractedData = extractPersonData(item)
-      await client.query(query, extractedData)
+      const extractedPersonData = extractPersonData(employee)
+      await client.query(query, extractedPersonData)
     } catch (error) {
       console.error({ error })
     }
   })
 }
 
-export async function insertInitialLocationData(personType: PersonType, query: string) {
-  const fileData = readLocalFile<PersonProps>(personType)
-
-  fileData.forEach(async item => {
+export async function insertInitialCustomerData(query: string, personCollection: Person) {
+  personCollection.customers.forEach(async customer => {
     try {
-      const extractData = extractLocationData(item)
-      await client.query(query, extractData)
+      const extractedCustomerData = extractPersonData(customer)
+      await client.query(query, extractedCustomerData)
+    } catch (error) {
+      console.error({ error })
+    }
+  })
+}
+
+export async function insertInitialLocationData(query: string, personCollection: Person) {
+  personCollection.locations.forEach(async location => {
+    try {
+      const extractedLocationData = extractLocationData(location)
+      await client.query(query, extractedLocationData)
+    } catch (error) {
+      console.error({ error })
+    }
+  })
+}
+
+export async function insertInitialLocationCustomerData(query: string, personCollection: Person) {
+  personCollection.customerLocation.forEach(async relation => {
+    try {
+      const extractedLocationData = extractLocationCustomerData(relation)
+      await client.query(query, extractedLocationData)
     } catch (error) {
       console.error({ error })
     }

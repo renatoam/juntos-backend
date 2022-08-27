@@ -6,7 +6,30 @@ import { populateDatabase } from "./populateDatabase"
 export const initDatabase = async () => {
   client.connect()
 
-  await clearDatabase()
-  await runMigrations()
-  await populateDatabase()
+  try {
+    await clearDatabase()
+  } catch (error) {
+    const decodedError = error as Error
+    console.error(error)
+    
+    return decodedError.message
+  }
+  
+  try {
+    await runMigrations()
+  } catch (error) {
+    const decodedError = error as Error
+    console.error(error)
+    
+    return decodedError.message
+  }
+  
+  try {
+    await populateDatabase()
+  } catch (error) {
+    const decodedError = error as Error
+    console.error(error)
+    
+    return decodedError.message
+  }
 }

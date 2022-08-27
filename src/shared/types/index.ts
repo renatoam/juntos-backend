@@ -34,6 +34,7 @@ export type TimezoneType = {
 }
 
 export type LocationType = {
+  id?: string
   street: string
   city: string
   state: string
@@ -61,6 +62,7 @@ export type PictureType = {
 export type PersonType = 'customers' | 'employees'
 
 export interface PersonProps {
+  id?: string
   type: PersonType
   gender: string
   name: NameType

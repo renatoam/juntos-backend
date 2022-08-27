@@ -6,6 +6,6 @@ export const clearDatabase = async () => {
   try {
     await client.query(EXCLUDE_ALL_DB_CONTENT)
   } catch (error) {
-    console.error(CLEANING_DATABASE_ERROR)
+    throw Error(`${CLEANING_DATABASE_ERROR}. Details: ${error}`)
   }
 }

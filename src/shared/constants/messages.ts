@@ -1,3 +1,6 @@
 export const CLEANING_DATABASE_ERROR = "Something goes wrong on cleaning database. Please, try again later."
 export const RUNNING_MIGRATIONS_ERROR = "Something goes wrong on running migrations. Please, try again later."
-export const INSERTING_DATA_ERROR = "Something goes wrong on inserting initial data. Please, try again later."
+export const INSERTING_EMPLOYEE_DATA_ERROR = "Something goes wrong on inserting initial employee data. Please, try again later."
+export const INSERTING_CUSTOMER_DATA_ERROR = "Something goes wrong on inserting initial customer data. Please, try again later."
+export const INSERTING_LOCATION_DATA_ERROR = "Something goes wrong on inserting initial location data. Please, try again later."
+export const INSERTING_CUSTOMER_LOCATION_DATA_ERROR = "Something goes wrong on inserting initial relation location/customer data. Please, try again later."
