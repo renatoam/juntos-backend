@@ -9,7 +9,7 @@ export class DeleteCustomerController {
     try {
       const wasDeleted = await customerRepository.remove(email)
 
-      if (wasDeleted) return response.status(201).end()
+      if (wasDeleted) return response.status(200).end()
       
       return response.status(400).json('Customer does not exist!')
     } catch (error) {
