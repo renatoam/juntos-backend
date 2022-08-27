@@ -1,8 +1,8 @@
-import { Person } from "../domain/Person"
+import { PersonCollection } from "../domain/PersonCollection"
 import { client } from "../infrastructure/database/postgres"
 import { extractLocationCustomerData, extractLocationData, extractPersonData } from "./extractData"
 
-export async function insertInitialEmployeeData(query: string, personCollection: Person) {
+export async function insertInitialEmployeeData(query: string, personCollection: PersonCollection) {
   personCollection.employees.forEach(async employee => {
     try {
       const extractedPersonData = extractPersonData(employee)
@@ -13,7 +13,7 @@ export async function insertInitialEmployeeData(query: string, personCollection:
   })
 }
 
-export async function insertInitialCustomerData(query: string, personCollection: Person) {
+export async function insertInitialCustomerData(query: string, personCollection: PersonCollection) {
   personCollection.customers.forEach(async customer => {
     try {
       const extractedCustomerData = extractPersonData(customer)
@@ -24,7 +24,7 @@ export async function insertInitialCustomerData(query: string, personCollection:
   })
 }
 
-export async function insertInitialLocationData(query: string, personCollection: Person) {
+export async function insertInitialLocationData(query: string, personCollection: PersonCollection) {
   personCollection.locations.forEach(async location => {
     try {
       const extractedLocationData = extractLocationData(location)
@@ -35,7 +35,7 @@ export async function insertInitialLocationData(query: string, personCollection:
   })
 }
 
-export async function insertInitialLocationCustomerData(query: string, personCollection: Person) {
+export async function insertInitialLocationCustomerData(query: string, personCollection: PersonCollection) {
   personCollection.customerLocation.forEach(async relation => {
     try {
       const extractedLocationData = extractLocationCustomerData(relation)

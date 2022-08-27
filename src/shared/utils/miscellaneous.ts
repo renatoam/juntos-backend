@@ -1,7 +1,7 @@
 import path from "path"
 import { v4 as uuid } from 'uuid'
 import { fileURLToPath } from "url"
-import { Person } from "../domain/Person"
+import { PersonCollection } from "../domain/PersonCollection"
 import { PersonProps, PersonType } from "../types"
 import { readLocalFile } from "./readLocalFile"
 
@@ -10,7 +10,7 @@ export const getDirname = (meta: ImportMeta) => {
   return path.dirname(__filename)
 }
 
-export function populatePersonCollection(person: PersonProps, personCollection: Person) {
+export function populatePersonCollection(person: PersonProps, personCollection: PersonCollection) {
   if (person.type === 'employees') {
     const { location, ...employeeProps } = person
 
@@ -43,10 +43,10 @@ export function populatePersonCollection(person: PersonProps, personCollection: 
 }
 
 export async function createPersonCollectionFromFile(personTypes: PersonType[]) {
-  const personCollection = Person.create()
+  const personCollection = PersonCollection.create()
   const files = personTypes.map(type => readLocalFile<PersonProps>(type))
   
-  const refinedPerson: Person = await new Promise((resolve) => {
+  const refinedPerson: PersonCollection = await new Promise((resolve) => {
     files.forEach(file => {
       file?.forEach(rawPerson => {
         resolve(populatePersonCollection(rawPerson, personCollection))

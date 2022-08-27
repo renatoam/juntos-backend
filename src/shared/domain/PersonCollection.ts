@@ -21,7 +21,7 @@ export interface UtilityPerson {
   customerLocation: CustomerLocation[]
 }
 
-export class Person extends Entity<UtilityPerson> {
+export class PersonCollection extends Entity<UtilityPerson> {
   private constructor(props?: UtilityPerson) {
     super({
       customers: props?.customers || [],
@@ -64,6 +64,6 @@ export class Person extends Entity<UtilityPerson> {
   }
 
   static create(props?: UtilityPerson) {
-    return new Person(props)
+    return new PersonCollection(props)
   }
 }

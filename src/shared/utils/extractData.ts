@@ -1,5 +1,5 @@
 import { VIEWER_ROLE_ID } from "../constants"
-import { CustomerLocation } from "../domain/Person"
+import { CustomerLocation } from "../domain/PersonCollection"
 import { LocationType, PersonProps } from "../types"
 
 export function extractPersonData(person: Partial<PersonProps>) {
