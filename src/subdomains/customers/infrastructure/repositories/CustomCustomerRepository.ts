@@ -42,9 +42,10 @@ export class CustomCustomerRepository implements CustomerRepository {
   
   async getCustomerByEmail(customerEmail: string): Promise<Customer> {
     const customerResult = await client.query(`SELECT * FROM customers INNER JOIN locations_customers USING(customer_id) INNER JOIN locations USING(location_id) INNER JOIN roles USING(role_id) WHERE customers.email = '${customerEmail}';`)
-    const rawCustomer = customerResult.rows[0]
 
-    return CustomerMapper.toDomain(rawCustomer)
+    if (!customerResult.rows.length) throw Error('Customer does not exist.')
+
+    return CustomerMapper.toDomain(customerResult.rows[0])
   }
   
   async getAllCustomers(): Promise<Customer[]> {
