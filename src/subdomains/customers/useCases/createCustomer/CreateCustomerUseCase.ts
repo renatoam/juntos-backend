@@ -6,11 +6,8 @@ import { CreateCustomerDTO } from "../../infrastructure/dtos/CreateCustomerDTO";
 import { CustomCustomerRepository } from "../../infrastructure/repositories/CustomCustomerRepository";
 
 export class CreateCustomerUseCase {
-  async execute(createCustomerDTO: CreateCustomerDTO): Promise<Customer> {
+  async execute(createCustomerDTO: CreateCustomerDTO): Promise<void> {
     const customerRepository = new CustomCustomerRepository()
-    const doesCustomerExists = await customerRepository.exists(createCustomerDTO.email)
-  
-    if (doesCustomerExists) throw new Error('Conflict')
   
     const newCustomer = Customer.create({
       name: createCustomerDTO.name,
@@ -42,17 +39,7 @@ export class CreateCustomerUseCase {
     }
   
     try {
-      let customer
-
       await customerRepository.save(newCustomer)
-      
-      try {
-        customer = await customerRepository.getCustomerByEmail(newCustomer.email)
-      } catch (error) {
-        throw new Error('Retrieve')
-      }
-  
-      return customer
     } catch (error) {
       throw new Error('Create')
     }

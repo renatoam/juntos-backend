@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { CreateCustomerUseCase } from "../../useCases/createCustomer/CreateCustomerUseCase";
+import { GetCustomerByEmailUseCase } from "../../useCases/getCustomerByEmail/GetCustomerByEmailUseCase";
 import { CreateCustomerDTO } from "../dtos/CreateCustomerDTO";
 import { CustomerMapper } from "../mappers/CustomerMapper";
 
@@ -7,11 +8,22 @@ export class CreateCustomerController {
   async run(request: Request, response: Response) {
     const createCustomerDTO = request.body as CreateCustomerDTO
     const createCustomerUseCase = new CreateCustomerUseCase()
+    const getCustomerByEmail = new GetCustomerByEmailUseCase()
 
     try {
-      const customer = await createCustomerUseCase.execute(createCustomerDTO)
+      await getCustomerByEmail.execute(createCustomerDTO.email)
 
-      return response.status(200).json({
+      return response.status(409).json({
+        status: 409,
+        message: 'Customer already exists!'
+      })
+    } catch {}
+
+    try {
+      await createCustomerUseCase.execute(createCustomerDTO)
+      const customer = await getCustomerByEmail.execute(createCustomerDTO.email)
+      
+      return response.status(201).json({
         message: 'Customer successfully created!',
         customer: CustomerMapper.toDTO(customer)
       })
@@ -20,12 +32,6 @@ export class CreateCustomerController {
       const errorDescription = decodedError.message.toLowerCase()
 
       switch (errorDescription) {
-        case 'conflict':
-          return response.status(409).json({
-            status: 409,
-            description: decodedError.stack,
-            message: 'Customer already exists!'
-          })
         case 'location':
           return response.status(500).json({
             status: 500,
