@@ -8,8 +8,8 @@ describe('Customer Routes', () => {
   const id: IdentifierType = '1dd0a949-7f9c-4b11-844f-5db5278bda45'
     const mockProps: CustomerProps = {
       name: {
-        first: 'Renato',
-        last: 'Alves',
+        firstName: 'Renato',
+        lastName: 'Alves',
         title: 'Mr'
       },
       type: 'employees'

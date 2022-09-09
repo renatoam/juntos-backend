@@ -1,12 +1,8 @@
-import { LocationType } from "../../../../shared/types"
+import { LocationType, PictureType, NameType } from "../../../../shared/types"
 
 export interface CustomerDTO {
   id: string
-  name: {
-    title: string
-    firstname: string
-    lastname: string
-  }
+  name: NameType
   email: string
   gender: string
   birthdate: Date
@@ -15,11 +11,7 @@ export interface CustomerDTO {
     main: string
     cell: string
   }
-  picture: {
-    thumbnail: string
-    medium: string
-    large: string
-  }
+  picture: PictureType
   role: string
   location: LocationType
 }

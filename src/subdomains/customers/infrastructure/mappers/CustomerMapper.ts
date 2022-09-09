@@ -8,8 +8,8 @@ export class CustomerMapper {
       id: customer.id.toString(),
       name: {
         title: customer.name.title,
-        firstname: customer.name.first,
-        lastname: customer.name.last,
+        firstName: customer.name.firstName,
+        lastName: customer.name.lastName,
       },
       email: customer.email,
       gender: customer.gender,
@@ -34,8 +34,8 @@ export class CustomerMapper {
       customer_id: customer.id,
       created_on: new Date().toISOString(),
       title: customer.name.title,
-      first_name: customer.name.first,
-      last_name: customer.name.last,
+      first_name: customer.name.firstName,
+      last_name: customer.name.lastName,
       email: customer.email,
       gender: customer.gender,
       birth_date: customer.dob.date,
@@ -53,8 +53,8 @@ export class CustomerMapper {
     return Customer.create({
       name: {
         title: rawCustomer.title,
-        first: rawCustomer.first_name,
-        last: rawCustomer.last_name,
+        firstName: rawCustomer.first_name,
+        lastName: rawCustomer.last_name,
       },
       type: 'customers',
       cell: rawCustomer.cell,

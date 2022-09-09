@@ -1,42 +1,37 @@
 import { ValueObject } from "../../../../shared/domain/ValueObject"
+import { NameType } from "../../../../shared/types"
 
-interface CustomerNameProps {
-  title: string
-  first: string
-  last: string
-}
-
-export class CustomerName extends ValueObject<CustomerNameProps> {
+export class CustomerName extends ValueObject<NameType> {
   public static maxLength: number = 15
   public static minLength: number = 2
   public static titles: string[] = ['miss', 'ms', 'mister', 'mr', 'mrs']
 
-  private constructor(props: CustomerNameProps) {
+  private constructor(props: NameType) {
     super(props)
   }
 
   get fullname() {
-    return `${this.props.title} ${this.props.first} ${this.props.last}`
+    return `${this.props.title} ${this.props.firstName} ${this.props.lastName}`
   }
 
-  get firstname() {
-    return this.props.first
+  get firstName() {
+    return this.props.firstName
   }
 
-  get lastname() {
-    return this.props.last
+  get lastName() {
+    return this.props.lastName
   }
 
-  public static create(props: CustomerNameProps): CustomerName | null {
-    const { title, first, last } = props
+  public static create(props: NameType): CustomerName | null {
+    const { title, firstName, lastName } = props
 
-    const firstname = !!first
-    const lastname = !!last
+    const first = !!firstName
+    const last = !!lastName
 
     if (title && !this.titles.includes(title)) return null
-    if (!firstname || !lastname) return null
-    if (first.length < this.minLength || last.length < this.minLength) return null
-    if (first.length > this.maxLength || last.length > this.maxLength) return null
+    if (!first || !last) return null
+    if (firstName.length < this.minLength || lastName.length < this.minLength) return null
+    if (firstName.length > this.maxLength || lastName.length > this.maxLength) return null
 
     return new CustomerName(props)
   }
