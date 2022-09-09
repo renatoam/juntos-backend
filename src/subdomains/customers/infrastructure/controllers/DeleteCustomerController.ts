@@ -11,9 +11,19 @@ export class DeleteCustomerController {
 
       if (wasDeleted) return response.status(200).end()
       
-      return response.status(400).json('Customer does not exist!')
+      return response.status(404).json({
+        status: 404,
+        description: '',
+        message: 'Customer does not exist.'
+      })
     } catch (error) {
-      return response.status(500).json({ message: 'Something went wrong!' })
+      const decodedError = error as Error
+
+      return response.status(500).json({
+        status: 500,
+        description: decodedError.stack,
+        message: 'Something went wrong!'
+      })
     }
   }
 }
