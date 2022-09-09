@@ -1,16 +1,24 @@
 import { client } from "../../../../shared/infrastructure/database/postgres";
-import { CustomerRepository } from "./CustomerRepository";
+import { LocationType } from "../../../../shared/types";
 import { Customer } from "../../domain/Customer";
 import { CustomerMapper } from "../mappers/CustomerMapper";
-
-type FieldType = keyof Customer
+import { UpdateCustomerToPersistence } from "../mappers/UpdateCustomerMapperType";
+import { CustomerRepository } from "./CustomerRepository";
 
 export class CustomCustomerRepository implements CustomerRepository {
-  async update(customerEmail: string, updatedFields: Partial<Customer>): Promise<void> {
-    const fieldsToUpdate = Object.keys(updatedFields) as FieldType[]
-    const querySetStatement = fieldsToUpdate.map((field: FieldType) => `${field} = '${updatedFields[field]}'`)
-    const query = `UPDATE customers SET ${querySetStatement.join(',')} WHERE email = '${customerEmail}';`
-    
+  async updateLocation(location: LocationType): Promise<void> {
+      console.log({ location })
+  }
+
+  async updateCustomer(updateCustomer: UpdateCustomerToPersistence): Promise<void> {
+    const customerFields = updateCustomer.customer
+    // const locationFields = updateCustomer.location
+
+    const insertQueryFields = Object.keys(customerFields)
+    const insertQueryValues = Object.values(customerFields).map(value => `'${value}'`)
+    const upsertQueryStatement = Object.keys(customerFields).map(key => `${key} = excluded.${key}`).join(', ')
+    const query = `INSERT INTO customers(${insertQueryFields}) VALUES(${insertQueryValues}) ON CONFLICT (email) DO UPDATE SET ${upsertQueryStatement};`
+
     await client.query(query)
   }
 
@@ -41,7 +49,7 @@ export class CustomCustomerRepository implements CustomerRepository {
   }
   
   async getCustomerByEmail(customerEmail: string): Promise<Customer> {
-    const customerResult = await client.query(`SELECT * FROM customers INNER JOIN locations_customers USING(customer_id) INNER JOIN locations USING(location_id) INNER JOIN roles USING(role_id) WHERE customers.email = '${customerEmail}';`)
+    const customerResult = await client.query(`SELECT * FROM customers LEFT JOIN locations_customers ON customers.customer_id = locations_customers.customer_id LEFT JOIN locations ON locations_customers.location_id = locations.location_id where email = '${customerEmail}';`)
 
     if (!customerResult.rows.length) throw Error('Customer does not exist.')
 
@@ -49,7 +57,7 @@ export class CustomCustomerRepository implements CustomerRepository {
   }
   
   async getAllCustomers(): Promise<Customer[]> {
-    const result = await client.query('SELECT * FROM customers INNER JOIN locations_customers USING(customer_id) INNER JOIN locations USING(location_id) LIMIT 20;')
+    const result = await client.query('SELECT * FROM customers LEFT JOIN locations_customers ON INNER JOIN locations USING(location_id) LIMIT 20;')
 
     return result.rows.map(customer => CustomerMapper.toDomain(customer))
   }

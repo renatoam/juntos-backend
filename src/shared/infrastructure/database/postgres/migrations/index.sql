@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS customers (
 
 INSERT INTO customers(customer_id, created_on, title, first_name, last_name, email, gender, birth_date, registered, phone, cell, thumbnail, medium, large, role_id) VALUES ('828e9367-0ad5-47f0-8415-a0c243b7f500', now(), 'Mr.', 'Renato', 'Alves', 'renato@gmail.com', 'male', '1992-03-03', '2016-11-21', '11973021653', null, null, null, null, 3);
 
+-- INSERT INTO customers(customer_id, created_on, title, first_name, last_name, email, gender, birth_date, registered, phone, cell, thumbnail, medium, large, role_id) VALUES ('828e9367-0ad5-47f0-8415-a0c243b7f500', now(), 'Mr.', 'Renato', 'Alves', 'renato@gmail.com', 'male', '1992-03-03', '2016-11-21', '11973021653', null, null, null, null, 3) ON CONFLICT (customer_id) DO UPDATE SET email = 'renato@hotmail.com';
+
 CREATE TABLE IF NOT EXISTS employees (
   employee_id UUID PRIMARY KEY,
   created_on TIMESTAMP NOT NULL, 

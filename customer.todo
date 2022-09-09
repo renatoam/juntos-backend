@@ -1,5 +1,9 @@
 You should develop:
 
+  // On save(), check if the entity already exists and then perform the create or update.
+  // With respect to doing the "create if not exists, else update", that's the type of complex data access logic that we don't want any other constructs in our domain to have to know about: only the repos should care about that.
+  // https://khalilstemmler.com/articles/typescript-domain-driven-design/repository-dto-mapper/
+
   Customer:
   
   ☐ Filter by state;
@@ -13,6 +17,10 @@ You should develop:
     ✔ Listar e criar todos as features @done(22-05-17 08:13)
     ✔ Checar as features @done(22-08-11 18:04)
       ✔ Mudar estrutura de pastas e deixar por feature @done(22-08-11 18:04)
+    ☐ Ajustar interface (e DTO) de Customer pra receber PhoneType
+    ☐ Age não precisa ser passado, dá pra ser calculado no BE e passado pro BD
+    ☐ Pro BE receber o ID da role, o FE precisa saber qual ID é de qual role, portanto enviar nome e ID no GET de Customer
+    ☐ Fazer Upsert pro Location no updateCustomer method
     ☐ Create Customer
       ✔ Domain @done(22-08-11 18:18)
         ✔ Entity @done(22-08-11 18:18)
@@ -28,7 +36,7 @@ You should develop:
         ✔ toDomain (Location) @done(22-08-17 21:12) @lasted(13s)
         ✔ toDTO (Customer) @done(22-08-18 21:36)
       ☐ Dependency Injection (feature)
-      ☐ Remover location criada se create customer der errado
+      ☐ Rollback on Save - Remover location criada se create customer der errado
     ☐ Get Customer by Email
       ✔ Domain @done(22-08-11 19:09)
         ✔ Entity @done(22-08-11 19:09)
@@ -78,8 +86,4 @@ You should develop:
         ☐ toDomain
       ☐ Dependency Injection (feature)
     ☐ Implement Base Controller
-
-  // On save(), check if the entity already exists and then perform the create or update.
-  // With respect to doing the "create if not exists, else update", that's the type of complex data access logic that we don't want any other constructs in our domain to have to know about: only the repos should care about that.
-  // https://khalilstemmler.com/articles/typescript-domain-driven-design/repository-dto-mapper/
   
