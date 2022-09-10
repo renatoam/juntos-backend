@@ -1,12 +1,11 @@
-import { randomUUID } from "crypto";
-import { IdentifierType } from "../types";
+import { UniqueEntityID } from "./UniqueEntityID";
 
 export abstract class Entity<T> {
-  protected readonly _id: IdentifierType;
+  protected readonly _id: UniqueEntityID;
   public readonly props: T;
 
-  constructor(props: T, id?: IdentifierType) {
-    this._id = id ? id : randomUUID();
+  constructor(props: T, id?: UniqueEntityID) {
+    this._id = id ? id : new UniqueEntityID();
     this.props = props;
   }
 }

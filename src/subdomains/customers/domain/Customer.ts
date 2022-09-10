@@ -1,5 +1,5 @@
 import { Entity } from "../../../shared/domain/Entity";
-import { IdentifierType } from "../../../shared/types";
+import { UniqueEntityID } from "../../../shared/domain/UniqueEntityID";
 import { CustomerProps } from "./CustomerProps";
 
 export class Customer extends Entity<CustomerProps> {
@@ -52,14 +52,14 @@ export class Customer extends Entity<CustomerProps> {
   }
 
   get id() {
-    return this._id
+    return this._id.toString()
   }
 
-  private constructor(props: CustomerProps, id?: IdentifierType) {
+  private constructor(props: CustomerProps, id?: UniqueEntityID) {
     super(props, id)
   }
 
-  public static create(props: CustomerProps, id?: IdentifierType): Customer {
+  public static create(props: CustomerProps, id?: UniqueEntityID): Customer {
     return new Customer(props, id)
   }
 }

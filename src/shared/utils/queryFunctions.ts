@@ -1,6 +1,6 @@
-export const insertInto = (table: string, fields: string[], values: string[]) => {
-  const queryFields = fields.join(',')
-  const queryValues = values.map(value => `'${value}'`).join(',')
+export const insertInto = <T>(table: string, persistenceObject: Record<keyof T, unknown>) => {
+  const insertQueryFields = Object.keys(persistenceObject).join(',')
+  const insertQueryValues = Object.values(persistenceObject).map(value => `'${value}'`).join(',')
 
-  return `INSERT INTO ${table}(${queryFields}) VALUES (${queryValues});`
+  return `INSERT INTO ${table}(${insertQueryFields}) VALUES (${insertQueryValues});`
 }

@@ -2,46 +2,40 @@ import { client } from "../../../../shared/infrastructure/database/postgres";
 import { LocationMapper } from "../../../../shared/infrastructure/mappers/LocationMapper";
 import { insertInto } from "../../../../shared/utils/queryFunctions";
 import { Customer } from "../../domain/Customer";
+import { Location } from "../../domain/Location";
 import { CreateCustomerDTO } from "../../infrastructure/dtos/CreateCustomerDTO";
 import { CustomCustomerRepository } from "../../infrastructure/repositories/CustomCustomerRepository";
+import { CustomLocationCustomerRepository } from "../../infrastructure/repositories/CustomLocationCustomerRepository";
+import { CustomLocationRepository } from "../../infrastructure/repositories/CustomLocationRepository";
 
 export class CreateCustomerUseCase {
   async execute(createCustomerDTO: CreateCustomerDTO): Promise<void> {
     const customerRepository = new CustomCustomerRepository()
-  
-    const newCustomer = Customer.create({
-      name: createCustomerDTO.name,
-      type: 'customers',
-      cell: createCustomerDTO.cell,
-      dob: createCustomerDTO.dob,
-      email: createCustomerDTO.email,
-      gender: createCustomerDTO.gender,
-      location: createCustomerDTO.location,
-      phone: createCustomerDTO.phone,
-      picture: createCustomerDTO.picture,
-      registered: createCustomerDTO.registered,
-      role_id: createCustomerDTO.role_id
-    })
+    const locationRepository = new CustomLocationRepository()
+    const locationCustomerRepository = new CustomLocationCustomerRepository()
+    const newCustomer = Customer.create(createCustomerDTO)
+    const newLocation = Location.create(createCustomerDTO.location)
 
-    const location = LocationMapper.toPersistence(createCustomerDTO.location)
-    const insertQueryFields = Object.keys(location)
-    const insertQueryValues = Object.values(location)
-    const locationCustomerFields = ['location_id', 'customer_id']
-    const locationCustomerValues = [location.location_id, newCustomer.id.toString()]
-    const locationQuery = insertInto('locations', insertQueryFields, insertQueryValues)
-    const locationCustomerQuery = insertInto('locations_customers', locationCustomerFields, locationCustomerValues)
-  
     try {
-      await client.query(locationQuery)
-      await client.query(locationCustomerQuery)
+      await customerRepository.save(newCustomer)
+
+      console.log('Salvou customer')
+    } catch {
+      throw new Error('Create')
+    }
+
+    try {
+      await locationRepository.save(newLocation)
+      console.log('Salvou location')
     } catch {
       throw new Error('Location')
     }
-  
+
     try {
-      await customerRepository.save(newCustomer)
-    } catch (error) {
-      throw new Error('Create')
+      await locationCustomerRepository.save({ customer_id: newCustomer.id, location_id: newLocation.id })
+      console.log('Salvou location_customer')
+    } catch {
+      throw new Error('LocationCustomer')
     }
   }
 }

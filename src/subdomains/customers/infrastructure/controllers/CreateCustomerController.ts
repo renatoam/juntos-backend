@@ -22,6 +22,8 @@ export class CreateCustomerController {
     try {
       await createCustomerUseCase.execute(createCustomerDTO)
       const customer = await getCustomerByEmail.execute(createCustomerDTO.email)
+
+      console.log({ customer, location: customer.location })
       
       return response.status(201).json({
         message: 'Customer successfully created!',
