@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { client } from "../../../../shared/infrastructure/database/postgres";
 import { CreateCustomerUseCase } from "../../useCases/createCustomer/CreateCustomerUseCase";
 import { GetCustomerByEmailUseCase } from "../../useCases/getCustomerByEmail/GetCustomerByEmailUseCase";
 import { CreateCustomerDTO } from "../dtos/CreateCustomerDTO";
@@ -8,22 +9,25 @@ export class CreateCustomerController {
   async run(request: Request, response: Response) {
     const createCustomerDTO = request.body as CreateCustomerDTO
     const createCustomerUseCase = new CreateCustomerUseCase()
-    const getCustomerByEmail = new GetCustomerByEmailUseCase()
+    const getCustomerByEmailUseCase = new GetCustomerByEmailUseCase()
 
     try {
-      await getCustomerByEmail.execute(createCustomerDTO.email)
+      const rawCustomer = await getCustomerByEmailUseCase.execute(createCustomerDTO.email)
 
-      return response.status(409).json({
-        status: 409,
-        message: 'Customer already exists!'
-      })
-    } catch {}
+      if (rawCustomer.length) {
+        return response.status(409).json({
+          status: 409,
+          message: 'Customer already exists!'
+        })
+      }
+    } catch (error) {
+      const errorMessage = (error as Error).message
+      return response.status(500).json({ message: errorMessage })
+    }
 
     try {
       await createCustomerUseCase.execute(createCustomerDTO)
-      const customer = await getCustomerByEmail.execute(createCustomerDTO.email)
-
-      console.log({ customer, location: customer.location })
+      const [customer] = await getCustomerByEmailUseCase.execute(createCustomerDTO.email)
       
       return response.status(201).json({
         message: 'Customer successfully created!',

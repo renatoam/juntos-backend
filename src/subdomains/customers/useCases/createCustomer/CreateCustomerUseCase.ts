@@ -1,6 +1,3 @@
-import { client } from "../../../../shared/infrastructure/database/postgres";
-import { LocationMapper } from "../../../../shared/infrastructure/mappers/LocationMapper";
-import { insertInto } from "../../../../shared/utils/queryFunctions";
 import { Customer } from "../../domain/Customer";
 import { Location } from "../../domain/Location";
 import { CreateCustomerDTO } from "../../infrastructure/dtos/CreateCustomerDTO";
@@ -18,22 +15,18 @@ export class CreateCustomerUseCase {
 
     try {
       await customerRepository.save(newCustomer)
-
-      console.log('Salvou customer')
     } catch {
       throw new Error('Create')
     }
 
     try {
       await locationRepository.save(newLocation)
-      console.log('Salvou location')
     } catch {
       throw new Error('Location')
     }
 
     try {
-      await locationCustomerRepository.save({ customer_id: newCustomer.id, location_id: newLocation.id })
-      console.log('Salvou location_customer')
+      await locationCustomerRepository.save({ location_id: newLocation.id, customer_id: newCustomer.id })
     } catch {
       throw new Error('LocationCustomer')
     }

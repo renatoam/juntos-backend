@@ -76,25 +76,21 @@ export class CustomCustomerRepository implements CustomerRepository {
     }
   }
 
-  getCustomerById(_customerId: string): Promise<Customer> {
+  getCustomerById(_customerId: string): Promise<Customer[]> {
     throw new Error("Method not implemented.");
   }
-
-  // SELECT * FROM customers INNER JOIN locations_customers ON customers.customer_id = locations_customers.customer_id INNER JOIN locations ON locations_customers.location_id = locations.location_id where email = 'renato.alves@example.com';
   
-  async getCustomerByEmail(customerEmail: string): Promise<Customer> {
-    const query = `SELECT * FROM customers LEFT JOIN locations_customers ON customers.customer_id = locations_customers.customer_id LEFT JOIN locations ON locations_customers.location_id = locations.location_id where email = '${customerEmail}';`
+  async getCustomerByEmail(customerEmail: string): Promise<Customer[]> {
+    const query = `SELECT c.*, l.* FROM customers c INNER JOIN locations_customers lc ON c.customer_id = lc.customer_id INNER JOIN locations l ON l.location_id = lc.location_id WHERE c.email = '${customerEmail}';`
 
     try {
       const customerResult = await client.query(query)
 
-      if (!customerResult.rows.length) throw Error('Customer does not exist.')
-
-      console.log('customerResult.rows[0]', customerResult.rows[0])
-      return CustomerMapper.toDomain(customerResult.rows[0])
-    } catch (error) {
-      const errorMessage = (error as Error).message
-      throw Error(errorMessage)
+      if (!customerResult.rows.length) return customerResult.rows
+      
+      return customerResult.rows.map(row => CustomerMapper.toDomain(row))
+    } catch {
+      throw Error('Error on querying customer on database')
     }
   }
   

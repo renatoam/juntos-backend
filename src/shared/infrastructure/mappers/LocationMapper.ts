@@ -1,11 +1,10 @@
 import { LocationType } from "../../types"
 import { LocationToPersistence } from "./LocationMapperType"
-import { v4 as uuid } from "uuid"
 
 export class LocationMapper {
   public static toPersistence(location: LocationType): LocationToPersistence {
     return {
-      location_id: uuid(),
+      location_id: location.id!,
       street: location.street,
       city: location.city,
       state: location.state,

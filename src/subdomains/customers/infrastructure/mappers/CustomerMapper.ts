@@ -4,7 +4,6 @@ import { CustomerToPersistence } from "./CustomerMapperType";
 
 export class CustomerMapper {
   public static toDTO(customer: Customer): CustomerDTO {
-    console.log({ location: customer.location })
     return {
       id: customer.id.toString(),
       name: {

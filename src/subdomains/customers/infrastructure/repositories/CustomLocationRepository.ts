@@ -11,12 +11,14 @@ export class CustomLocationRepository implements LocationRepository {
   exists(t: string): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
+
   async save(location: LocationType): Promise<void> {
     const locationToPersistence = LocationMapper.toPersistence(location)
     const insertLocationQuery = insertInto('locations', locationToPersistence)
 
     await client.query(insertLocationQuery)
   }
+
   remove(t: string): Promise<boolean> {
     throw new Error("Method not implemented.");
   }

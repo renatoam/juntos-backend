@@ -11,7 +11,7 @@ export class UpdateCustomerController {
     const requestDTO = request.body as RequestUpdateCustomerDTO
     const updateCustomerUseCase = new UpdateCustomerUseCase()
     const getCustomerByEmail = new GetCustomerByEmailUseCase()
-    let customer: Customer
+    let customer: Customer[]
 
     try {
       await getCustomerByEmail.execute(email)
@@ -29,9 +29,7 @@ export class UpdateCustomerController {
       await updateCustomerUseCase.execute(requestDTO)
 
       try {
-        console.log({ email })
         customer = await getCustomerByEmail.execute(email)
-        console.log({ customer })
       } catch (error) {
         const decodedError = error as Error
         
@@ -44,7 +42,7 @@ export class UpdateCustomerController {
 
       return response.status(200).json({
         message: 'Customer successfully updated!',
-        customer: CustomerMapper.toDTO(customer)
+        customer: CustomerMapper.toDTO(customer[0])
       })
     } catch (error) {
       const decodedError = error as Error

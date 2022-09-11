@@ -4,18 +4,22 @@ import { CustomerMapper } from "../mappers/CustomerMapper";
 
 export class GetCustomerByEmailController {
   async run(request: Request, response: Response) {
-    const useCase = new GetCustomerByEmailUseCase()
+    const getCustomerByEmailUseCase = new GetCustomerByEmailUseCase()
 
     try {
-      const rawCustomer = await useCase.execute(request.params.email)
-      const customer = CustomerMapper.toDTO(rawCustomer)
+      const rawCustomer = await getCustomerByEmailUseCase.execute(request.params.email)
+
+      if (!rawCustomer.length) {
+        return response.status(404).json({ message: 'Customer does not exist' })
+      }
+
+      const customer = CustomerMapper.toDTO(rawCustomer[0])
       
       return response.status(200).json({ customer })
     } catch (error) {
       const decodedError = error as Error
       
-      return response.status(404).json({ message: decodedError })
+      return response.status(500).json({ message: decodedError })
     }
-
   }
 }

@@ -21,6 +21,7 @@ export class CustomLocationCustomerRepository {
     const locationCustomerQuery = insertInto('locations_customers', relation)
     await client.query(locationCustomerQuery)
   }
+  
   remove(t: string): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
