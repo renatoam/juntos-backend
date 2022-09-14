@@ -1,16 +1,29 @@
+import { LocationType } from "../../../../shared/types";
 import { RequestUpdateCustomerDTO } from "../../infrastructure/dtos/UpdateCustomerDTO";
-import { UpdateCustomerMapper } from "../../infrastructure/mappers/UpdateCustomerMapper";
 import { CustomCustomerRepository } from "../../infrastructure/repositories/CustomCustomerRepository";
+import { CustomLocationRepository } from "../../infrastructure/repositories/CustomLocationRepository";
 
 export class UpdateCustomerUseCase {
   async execute(requestUpdateCustomerDTO: RequestUpdateCustomerDTO): Promise<void> {
     const customerRepository = new CustomCustomerRepository()
-    const updateCustomer = UpdateCustomerMapper.toPersistence(requestUpdateCustomerDTO)
+    const locationRepository = new CustomLocationRepository()
+    let location: LocationType
 
     try {
-      await customerRepository.updateCustomer(updateCustomer)
+      location = await locationRepository.getLocationByCustomer(requestUpdateCustomerDTO.id)
     } catch (error) {
-      throw new Error('Update')
+      throw Error('Location')
+    }
+
+    try {
+      const customerToUpdate = {
+        ...requestUpdateCustomerDTO,
+        location: { ...requestUpdateCustomerDTO.location, id: location.id }
+      }
+
+      await customerRepository.updateCustomer(customerToUpdate)
+    } catch (error) {
+      throw Error('Update')
     }
   }
 }

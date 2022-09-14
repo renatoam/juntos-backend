@@ -1,15 +1,18 @@
 import { client } from "../../../../shared/infrastructure/database/postgres";
-import { LocationToPersistence } from "../../../../shared/infrastructure/mappers/LocationMapperType";
+import { LocationMapper } from "../../../../shared/infrastructure/mappers/LocationMapper";
+import { LocationType } from "../../../../shared/types";
 import { Customer } from "../../domain/Customer";
+import { RequestUpdateCustomerDTO } from "../dtos/UpdateCustomerDTO";
 import { CustomerMapper } from "../mappers/CustomerMapper";
-import { UpdateCustomerToPersistence } from "../mappers/UpdateCustomerMapperType";
+import { UpdateCustomerMapper } from "../mappers/UpdateCustomerMapper";
 import { CustomerRepository } from "./CustomerRepository";
 
 export class CustomCustomerRepository implements CustomerRepository {
-  async updateLocation(location: LocationToPersistence): Promise<void> {
-    const insertQueryFields = Object.keys(location)
-    const insertQueryValues = Object.values(location).map(value => `'${value}'`)
-    const upsertQueryAction = Object.keys(location).map(key => `${key} = excluded.${key}`).join(', ')
+  async updateLocation(location: LocationType): Promise<void> {
+    const locationToPersistence = LocationMapper.toPersistence(location)
+    const insertQueryFields = Object.keys(locationToPersistence)
+    const insertQueryValues = Object.values(locationToPersistence).map(value => `'${value}'`)
+    const upsertQueryAction = Object.keys(locationToPersistence).map(key => `${key} = excluded.${key}`).join(', ')
     const query = `INSERT INTO locations(${insertQueryFields}) VALUES(${insertQueryValues}) ON CONFLICT (location_id) DO UPDATE SET ${upsertQueryAction};`
 
     try {
@@ -20,8 +23,9 @@ export class CustomCustomerRepository implements CustomerRepository {
     }
   }
 
-  async updateCustomer(updateCustomer: UpdateCustomerToPersistence): Promise<void> {
-    const customerFields = updateCustomer.customer
+  async updateCustomer(updateCustomer: RequestUpdateCustomerDTO): Promise<void> {
+    const domainCustomer = UpdateCustomerMapper.toDomain(updateCustomer)
+    const customerFields = CustomerMapper.toPersistence(domainCustomer)
 
     const insertQueryFields = Object.keys(customerFields)
     const insertQueryValues = Object.values(customerFields).map(value => `'${value}'`)
@@ -95,7 +99,7 @@ export class CustomCustomerRepository implements CustomerRepository {
   }
   
   async getAllCustomers(): Promise<Customer[]> {
-    const query = 'SELECT * FROM customers LEFT JOIN locations_customers ON INNER JOIN locations USING(location_id) LIMIT 20;'
+    const query = 'SELECT * FROM customers c INNER JOIN locations_customers lc ON c.customer_id = lc.customer_id INNER JOIN locations l USING(location_id) LIMIT 20;'
     
     try {
       const result = await client.query(query)

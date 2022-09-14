@@ -8,7 +8,17 @@ export class CustomLocationRepository implements LocationRepository {
   getLocationByState(state: string): Promise<LocationType> {
     throw new Error("Method not implemented.");
   }
-  exists(t: string): Promise<boolean> {
+
+  async getLocationByCustomer(customerId: string): Promise<LocationType> {
+    const query = `SELECT l.* FROM locations l INNER JOIN locations_customers lc USING(location_id) WHERE lc.customer_id = '${customerId}';`
+
+    const result = await client.query(query)
+    const location = LocationMapper.toDomain(result.rows[0])
+
+    return location
+  } 
+
+  exists(locationId: string): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
 

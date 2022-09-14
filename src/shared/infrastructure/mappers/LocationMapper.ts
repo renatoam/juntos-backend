@@ -15,4 +15,22 @@ export class LocationMapper {
       description: location.timezone.description,
     }
   }
+
+  public static toDomain(location: LocationToPersistence): LocationType {
+    return {
+      id: location.location_id,
+      street: location.street,
+      city: location.city,
+      state: location.state,
+      postcode: location.postcode,
+      coordinates: {
+        latitude: location.latitude,
+        longitude: location.longitude
+      },
+      timezone: {
+        description: location.description,
+        offset: location.off
+      }
+    }
+  }
 }

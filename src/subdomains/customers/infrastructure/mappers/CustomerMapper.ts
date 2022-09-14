@@ -90,6 +90,6 @@ export class CustomerMapper {
       },
       role_id: rawCustomer.role_id,
       role: rawCustomer.role
-    })
+    }, rawCustomer.customer_id)
   }
 }

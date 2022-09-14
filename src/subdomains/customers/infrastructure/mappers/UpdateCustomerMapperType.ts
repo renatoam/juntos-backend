@@ -1,4 +1,4 @@
-import { LocationToPersistence } from "../../../../shared/infrastructure/mappers/LocationMapperType"
+import { LocationType } from "../../../../shared/types"
 
 export interface UpdateCustomerToPersistence {
   customer: {
@@ -18,5 +18,5 @@ export interface UpdateCustomerToPersistence {
     large: string
     role_id: number
   }
-  location: LocationToPersistence
+  location: LocationType
 }

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Customer } from "../../domain/Customer";
 import { GetCustomerByEmailUseCase } from "../../useCases/getCustomerByEmail/GetCustomerByEmailUseCase";
 import { UpdateCustomerUseCase } from "../../useCases/updateCustomer/UpdateCustomerUseCase";
-import { RequestUpdateCustomerDTO, UpdateCustomerDTO } from "../dtos/UpdateCustomerDTO";
+import { RequestUpdateCustomerDTO } from "../dtos/UpdateCustomerDTO";
 import { CustomerMapper } from "../mappers/CustomerMapper";
 
 export class UpdateCustomerController {
@@ -10,34 +10,31 @@ export class UpdateCustomerController {
     const { email } = request.params
     const requestDTO = request.body as RequestUpdateCustomerDTO
     const updateCustomerUseCase = new UpdateCustomerUseCase()
-    const getCustomerByEmail = new GetCustomerByEmailUseCase()
+    const getCustomerByEmailUseCase = new GetCustomerByEmailUseCase()
     let customer: Customer[]
 
     try {
-      await getCustomerByEmail.execute(email)
-    } catch (error) {
-      const decodedError = error as Error
+      const rawCustomer = await getCustomerByEmailUseCase.execute(requestDTO.email)
 
-      return response.status(404).json({
-        status: 404,
-        description: decodedError.stack,
-        message: decodedError.message
-      })
+      if (!rawCustomer.length) {
+        return response.status(404).json({
+          status: 409,
+          message: 'Customer does not exist.'
+        })
+      }
+    } catch (error) {
+      const errorMessage = (error as Error).message
+      return response.status(500).json({ message: errorMessage })
     }
   
     try {
       await updateCustomerUseCase.execute(requestDTO)
 
       try {
-        customer = await getCustomerByEmail.execute(email)
-      } catch (error) {
-        const decodedError = error as Error
-        
-        return response.status(200).json({
-          status: 200,
-          description: decodedError.stack,
-          message: 'Customer updated, but there was an error on retrieving.'
-        })
+        customer = await getCustomerByEmailUseCase.execute(email)
+      } catch {
+        return response.status(500)
+          .json({ message: 'Customer updated, but there was an error on retrieving.' })
       }
 
       return response.status(200).json({

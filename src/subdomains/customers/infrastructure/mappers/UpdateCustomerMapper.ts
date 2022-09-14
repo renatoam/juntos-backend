@@ -1,7 +1,31 @@
+import { UniqueEntityID } from "../../../../shared/domain/UniqueEntityID";
+import { Customer } from "../../domain/Customer";
 import { RequestUpdateCustomerDTO, UpdateCustomerDTO } from "../dtos/UpdateCustomerDTO";
 import { UpdateCustomerToPersistence } from "./UpdateCustomerMapperType";
 
 export class UpdateCustomerMapper {
+  public static toDomain(updateCustomerDTO: RequestUpdateCustomerDTO): Customer {
+    return Customer.create({
+      name: updateCustomerDTO.name,
+      email: updateCustomerDTO.email,
+      gender: updateCustomerDTO.gender,
+      dob: {
+        date: updateCustomerDTO.birthdate,
+        age: new Date().getFullYear() - new Date(updateCustomerDTO.birthdate).getFullYear()
+      },
+      registered: {
+        date: updateCustomerDTO.registered,
+        age: new Date().getFullYear() - new Date(updateCustomerDTO.registered).getFullYear()
+      },
+      phone: updateCustomerDTO.phone.main,
+      cell: updateCustomerDTO.phone.cell,
+      picture: updateCustomerDTO.picture,
+      location: updateCustomerDTO.location,
+      role_id: updateCustomerDTO.role_id.toString(),
+      type: 'customers',
+    }, new UniqueEntityID(updateCustomerDTO.id))
+  }
+
   public static toDTO(customer: Record<string, any>): UpdateCustomerDTO {
     return {
       id: customer.id.toString(),
@@ -32,9 +56,9 @@ export class UpdateCustomerMapper {
         first_name: customer.name?.firstName,
         last_name: customer.name?.lastName,
         email: customer.email,
+        gender: customer.gender,
         birth_date: customer.birthdate,
         registered: customer.registered,
-        gender: customer.gender,
         phone: customer.phone.main,
         cell: customer.phone.cell,
         thumbnail: customer.picture?.thumbnail,
@@ -43,15 +67,13 @@ export class UpdateCustomerMapper {
         role_id: customer.role_id,
       },
       location: {
-        location_id: customer.location.id!,
+        id: customer.location.id!,
         street: customer.location.street,
         city: customer.location.city,
         state: customer.location.state,
         postcode: customer.location.postcode,
-        latitude: customer.location.coordinates.latitude,
-        longitude: customer.location.coordinates.longitude,
-        description: customer.location.timezone.description,
-        off: customer.location.timezone.offset,
+        coordinates: customer.location.coordinates,
+        timezone: customer.location.timezone,
       }
     }
   }
