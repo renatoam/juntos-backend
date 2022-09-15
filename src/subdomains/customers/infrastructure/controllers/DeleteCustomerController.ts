@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { CustomCustomerRepository } from "../repositories/CustomCustomerRepository";
+import { DeleteCustomerUseCase } from "../../useCases/deleteCustomer";
 
 export class DeleteCustomerController {
   async run(request: Request, response: Response) {
     const { email } = request.params
-    const customerRepository = new CustomCustomerRepository()
+    const deleteCustomerUseCase = new DeleteCustomerUseCase()
 
     try {
-      const wasDeleted = await customerRepository.remove(email)
+      const wasDeleted = await deleteCustomerUseCase.execute(email)
 
       if (wasDeleted) return response.status(200).end()
       
