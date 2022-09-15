@@ -35,6 +35,11 @@ export type PhoneType = {
   cell: string
 }
 
+export type RoleType = {
+  id: number
+  description?: string
+}
+
 export type CoordinateType = {
   latitude: string
   longitude: string

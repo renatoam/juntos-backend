@@ -1,6 +1,11 @@
-import { NameType, PersonProps } from "../../../shared/types";
+import { NameType, PersonProps, PhoneType, RoleType } from "../../../shared/types";
 
-export interface CustomerProps extends Omit<PersonProps, 'occupation' | 'name' | 'id'> {
-  role?: string
+type CustomPersonProps = Pick<PersonProps, 'type' | 'gender' | 'location' | 'email' | 'picture'>
+
+export interface CustomerProps extends CustomPersonProps {
+  role: RoleType
   name: NameType
+  birthdate: Date
+  registered: Date
+  phone: PhoneType
 }

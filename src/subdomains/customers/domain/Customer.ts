@@ -19,8 +19,8 @@ export class Customer extends Entity<CustomerProps> {
     return this.props.email
   }
 
-  get dob() {
-    return this.props.dob
+  get birthdate() {
+    return this.props.birthdate
   }
 
   get registered() {
@@ -29,10 +29,6 @@ export class Customer extends Entity<CustomerProps> {
 
   get phone() {
     return this.props.phone
-  }
-
-  get cell() {
-    return this.props.cell
   }
 
   get picture() {
@@ -45,10 +41,6 @@ export class Customer extends Entity<CustomerProps> {
 
   get role() {
     return this.props.role
-  }
-
-  get role_id() {
-    return this.props.role_id
   }
 
   get id() {

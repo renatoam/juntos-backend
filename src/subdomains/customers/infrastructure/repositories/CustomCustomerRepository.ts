@@ -2,7 +2,7 @@ import { client } from "../../../../shared/infrastructure/database/postgres";
 import { LocationMapper } from "../../../../shared/infrastructure/mappers/LocationMapper";
 import { LocationType } from "../../../../shared/types";
 import { Customer } from "../../domain/Customer";
-import { RequestUpdateCustomerDTO } from "../dtos/UpdateCustomerDTO";
+import { UpdateCustomerDTO } from "../dtos/UpdateCustomerDTO";
 import { CustomerMapper } from "../mappers/CustomerMapper";
 import { UpdateCustomerMapper } from "../mappers/UpdateCustomerMapper";
 import { CustomerRepository } from "./CustomerRepository";
@@ -23,7 +23,7 @@ export class CustomCustomerRepository implements CustomerRepository {
     }
   }
 
-  async updateCustomer(updateCustomer: RequestUpdateCustomerDTO): Promise<void> {
+  async updateCustomer(updateCustomer: UpdateCustomerDTO): Promise<void> {
     const domainCustomer = UpdateCustomerMapper.toDomain(updateCustomer)
     const customerFields = CustomerMapper.toPersistence(domainCustomer)
 
@@ -86,13 +86,16 @@ export class CustomCustomerRepository implements CustomerRepository {
   
   async getCustomerByEmail(customerEmail: string): Promise<Customer[]> {
     const query = `SELECT c.*, l.* FROM customers c INNER JOIN locations_customers lc ON c.customer_id = lc.customer_id INNER JOIN locations l ON l.location_id = lc.location_id WHERE c.email = '${customerEmail}';`
+    const roleQuery = `SELECT r.* FROM roles r INNER JOIN customers c USING(role_id) WHERE c.email = '${customerEmail}';`
 
     try {
       const customerResult = await client.query(query)
+      const roleResult = await client.query(roleQuery)
+      const customerRole = roleResult.rows[0]
 
       if (!customerResult.rows.length) return customerResult.rows
       
-      return customerResult.rows.map(row => CustomerMapper.toDomain(row))
+      return customerResult.rows.map(row => CustomerMapper.toDomain({ ...row, role: { ...customerRole } }))
     } catch {
       throw Error('Error on querying customer on database')
     }

@@ -17,13 +17,13 @@ You should develop:
     ✔ Listar e criar todos as features @done(22-05-17 08:13)
     ✔ Checar as features @done(22-08-11 18:04)
       ✔ Mudar estrutura de pastas e deixar por feature @done(22-08-11 18:04)
-    ☐ Ajustar interface (e DTO) de Customer pra receber PhoneType
-    ☐ Ajustar Update, que está falhando provavelmente por causa do item acima
-    ☐ Age não precisa ser passado, dá pra ser calculado no BE e passado pro BD
-    ☐ Pro BE receber o ID da role, o FE precisa saber qual ID é de qual role, portanto enviar nome e ID no GET de Customer
+    ✔ Ajustar interface (e DTO) de Customer pra receber PhoneType @done(22-09-14 20:35)
+    ✔ Ajustar Update, que está falhando provavelmente por causa do item acima @done(22-09-13 21:12)
+    ✘ Age não precisa ser passado, dá pra ser calculado no BE e passado pro BD @cancelled(22-09-14 20:35)
+    ✔ Pro BE receber o ID da role, o FE precisa saber qual ID é de qual role, portanto enviar nome e ID no GET de Customer @done(22-09-14 21:55)
     ✔ Fazer Upsert pro Location no updateCustomer method @done(22-09-13 21:04)
     ✔ Mudar o getByEmail porque não consigo usar um trycatch na CreateController. Se a query der algum erro inesperado, preciso pegar com o catch e encerrar (return), mas já tem um return no try, então com dois return o resto do código fica inacessíve. Isso se resolve se ao invés de retornar um erro quando o customer não for encontrado, eu retornar o array vazio. @done(22-09-11 20:54)
-      - Por enquanto, na CreateController, to deixando o catch vazio, mas a ideia é removê-lo.
+      ✔ Por enquanto, na CreateController, to deixando o catch vazio, mas a ideia é removê-lo. @done(22-09-13 21:12)
     ✔ A query pra pegar dados de customers e locations não tá rolando, preciso descobrir como fazer @done(22-09-11 20:54)
 
     ☐ Create Customer
@@ -41,7 +41,7 @@ You should develop:
         ✔ toDomain (Location) @done(22-08-17 21:12) @lasted(13s)
         ✔ toDTO (Customer) @done(22-08-18 21:36)
       ☐ Dependency Injection (feature)
-      ☐ Rollback on Save - Remover location criada se create customer der errado
+      ✘ Rollback on Save - Remover location criada se create customer der errado @cancelled(22-09-13 21:12)
     ☐ Get Customer by Email
       ✔ Domain @done(22-08-11 19:09)
         ✔ Entity @done(22-08-11 19:09)
@@ -50,9 +50,9 @@ You should develop:
       ✔ Controller @done(22-08-11 19:09)
       ✔ UseCase @done(22-08-11 19:10)
       ✔ Repository @done(22-08-11 19:10)
-      ☐ Mapper
-        ☐ toPersistence
-        ☐ toDomain
+      ✔ Mapper @done(22-09-13 21:13)
+        ✘ toPersistence @cancelled(22-09-13 21:13)
+        ✔ toDomain @done(22-09-13 21:13)
       ☐ Dependency Injection (feature)
     ☐ Get All Customers
       ✔ Domain @done(22-08-11 19:11)
@@ -62,9 +62,9 @@ You should develop:
       ✔ Controller @done(22-08-11 19:11)
       ✔ UseCase @done(22-08-11 19:15)
       ✔ Repository @done(22-08-11 19:15)
-      ☐ Mapper
-        ☐ toPersistence
-        ☐ toDomain
+      ✔ Mapper @done(22-09-13 21:14)
+        ✘ toPersistence @cancelled(22-09-13 21:14)
+        ✔ toDomain @done(22-09-13 21:14)
       ☐ Dependency Injection (feature)
     ☐ Update Customer
       ✔ Domain @done(22-08-11 19:15)
@@ -74,9 +74,9 @@ You should develop:
       ✔ Controller @done(22-08-11 19:15)
       ✔ UseCase @done(22-08-11 19:15)
       ✔ Repository @done(22-08-11 19:16)
-      ☐ Mapper
-        ☐ toPersistence
-        ☐ toDomain
+      ✔ Mapper @done(22-09-13 21:14)
+        ✔ toPersistence @done(22-09-13 21:14)
+        ✔ toDomain @done(22-09-13 21:14)
       ☐ Dependency Injection (feature)
     ☐ Remove Customer
       ✔ Domain @done(22-08-11 19:16)

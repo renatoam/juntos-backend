@@ -15,6 +15,6 @@ export interface CustomerToPersistence {
   thumbnail: string
   medium: string
   large: string
-  role_id: string
+  role_id: number
   location_id?: string
 }

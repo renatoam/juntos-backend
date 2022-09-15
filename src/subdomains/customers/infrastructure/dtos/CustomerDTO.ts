@@ -1,4 +1,4 @@
-import { LocationType, PictureType, NameType } from "../../../../shared/types"
+import { LocationType, PictureType, NameType, RoleType } from "../../../../shared/types"
 
 export interface CustomerDTO {
   id: string
@@ -12,6 +12,6 @@ export interface CustomerDTO {
     cell: string
   }
   picture: PictureType
-  role: string
+  role: RoleType
   location: LocationType
 }

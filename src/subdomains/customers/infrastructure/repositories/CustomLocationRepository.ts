@@ -18,7 +18,7 @@ export class CustomLocationRepository implements LocationRepository {
     return location
   } 
 
-  exists(locationId: string): Promise<boolean> {
+  exists(_locationId: string): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
 

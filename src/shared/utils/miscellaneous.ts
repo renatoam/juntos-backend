@@ -56,3 +56,10 @@ export async function createPersonCollectionFromFile(personTypes: PersonType[]) 
 
   return refinedPerson
 }
+
+export function calculateAge(date: Date): number {
+  const currentYear = new Date().getFullYear()
+  const incomingYear = new Date(date).getFullYear()
+
+  return currentYear - incomingYear
+}

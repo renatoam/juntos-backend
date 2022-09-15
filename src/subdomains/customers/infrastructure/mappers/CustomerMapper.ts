@@ -13,18 +13,18 @@ export class CustomerMapper {
       },
       email: customer.email,
       gender: customer.gender,
-      birthdate: customer.dob.date,
-      registered: customer.registered.date,
+      birthdate: customer.birthdate,
+      registered: customer.registered,
       phone: {
-        main: customer.phone,
-        cell: customer.cell
+        main: customer.phone.main,
+        cell: customer.phone.cell
       },
       picture: {
         thumbnail: customer.picture.thumbnail,
         medium: customer.picture.medium,
         large: customer.picture.large
       },
-      role: customer.role || 'VIEWER',
+      role: customer.role,
       location: customer.location
     }
   }
@@ -38,14 +38,14 @@ export class CustomerMapper {
       last_name: customer.name.lastName,
       email: customer.email,
       gender: customer.gender,
-      birth_date: customer.dob.date,
-      registered: customer.registered.date,
-      phone: customer.phone,
-      cell: customer.cell,
+      birth_date: customer.birthdate,
+      registered: customer.registered,
+      phone: customer.phone.main,
+      cell: customer.phone.cell,
       thumbnail: customer.picture.thumbnail,
       medium: customer.picture.medium,
       large: customer.picture.large,
-      role_id: customer.role_id,
+      role_id: customer.role.id,
     }
   }
 
@@ -57,11 +57,7 @@ export class CustomerMapper {
         lastName: rawCustomer.last_name,
       },
       type: 'customers',
-      cell: rawCustomer.cell,
-      dob: {
-        age: 0,
-        date: new Date(rawCustomer.birth_date)
-      },
+      birthdate: new Date(rawCustomer.birth_date),
       email: rawCustomer.email,
       gender: rawCustomer.gender,
       location: {
@@ -78,17 +74,16 @@ export class CustomerMapper {
           offset: rawCustomer.off
         }
       },
-      phone: rawCustomer.phone,
+      phone: {
+        main: rawCustomer.phone,
+        cell: rawCustomer.cell
+      },
       picture: {
         large: rawCustomer.large,
         medium: rawCustomer.medium,
         thumbnail: rawCustomer.thumbnail
       },
-      registered: {
-        age: 0,
-        date: new Date(rawCustomer.registered)
-      },
-      role_id: rawCustomer.role_id,
+      registered: new Date(rawCustomer.registered),
       role: rawCustomer.role
     }, rawCustomer.customer_id)
   }
