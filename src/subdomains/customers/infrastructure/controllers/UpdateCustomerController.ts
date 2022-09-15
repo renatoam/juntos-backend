@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 import { Customer } from "../../domain/Customer";
 import { GetCustomerByEmailUseCase } from "../../useCases/getCustomerByEmail/GetCustomerByEmailUseCase";
 import { UpdateCustomerUseCase } from "../../useCases/updateCustomer/UpdateCustomerUseCase";
-import { RequestUpdateCustomerDTO } from "../dtos/UpdateCustomerDTO";
+import { UpdateCustomerDTO } from "../dtos/UpdateCustomerDTO";
 import { CustomerMapper } from "../mappers/CustomerMapper";
 
 export class UpdateCustomerController {
   async run(request: Request, response: Response) {
     const { email } = request.params
-    const requestDTO = request.body as RequestUpdateCustomerDTO
+    const requestDTO = request.body as UpdateCustomerDTO
     const updateCustomerUseCase = new UpdateCustomerUseCase()
     const getCustomerByEmailUseCase = new GetCustomerByEmailUseCase()
     let customer: Customer[]

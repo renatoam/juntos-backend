@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { client } from "../../../../shared/infrastructure/database/postgres";
 import { CreateCustomerUseCase } from "../../useCases/createCustomer/CreateCustomerUseCase";
 import { GetCustomerByEmailUseCase } from "../../useCases/getCustomerByEmail/GetCustomerByEmailUseCase";
 import { CreateCustomerDTO } from "../dtos/CreateCustomerDTO";

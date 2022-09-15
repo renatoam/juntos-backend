@@ -1,3 +1,4 @@
+import { calculateAge } from "../../../../shared/utils/miscellaneous";
 import { Customer } from "../../domain/Customer";
 import { Location } from "../../domain/Location";
 import { CreateCustomerDTO } from "../../infrastructure/dtos/CreateCustomerDTO";
@@ -10,13 +11,13 @@ export class CreateCustomerUseCase {
     const customerRepository = new CustomCustomerRepository()
     const locationRepository = new CustomLocationRepository()
     const locationCustomerRepository = new CustomLocationCustomerRepository()
-    const newCustomer = Customer.create(createCustomerDTO)
+    const newCustomer = Customer.create({ ...createCustomerDTO, role: { id: createCustomerDTO.role_id } })
     const newLocation = Location.create(createCustomerDTO.location)
 
     try {
       await customerRepository.save(newCustomer)
-    } catch {
-      throw new Error('Create')
+    } catch (error) {
+      throw new Error(`${(error as Error).message}`)
     }
 
     try {

@@ -1,4 +1,4 @@
-import { DobType, LocationType, NameType, PersonType, PictureType, RegisteredType } from "../../../../shared/types"
+import { LocationType, NameType, PersonType, PhoneType, PictureType } from "../../../../shared/types"
 
 export interface CreateCustomerDTO {
   type: PersonType
@@ -6,10 +6,9 @@ export interface CreateCustomerDTO {
   name: NameType
   location: LocationType
   email: string
-  dob: DobType
-  registered: RegisteredType
-  phone: string
-  cell: string
-  role_id: string
+  birthdate: Date
+  registered: Date
+  phone: PhoneType
+  role_id: number
   picture: PictureType
 }

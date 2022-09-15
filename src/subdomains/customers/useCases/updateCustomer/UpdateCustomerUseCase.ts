@@ -1,10 +1,10 @@
 import { LocationType } from "../../../../shared/types";
-import { RequestUpdateCustomerDTO } from "../../infrastructure/dtos/UpdateCustomerDTO";
+import { UpdateCustomerDTO } from "../../infrastructure/dtos/UpdateCustomerDTO";
 import { CustomCustomerRepository } from "../../infrastructure/repositories/CustomCustomerRepository";
 import { CustomLocationRepository } from "../../infrastructure/repositories/CustomLocationRepository";
 
 export class UpdateCustomerUseCase {
-  async execute(requestUpdateCustomerDTO: RequestUpdateCustomerDTO): Promise<void> {
+  async execute(requestUpdateCustomerDTO: UpdateCustomerDTO): Promise<void> {
     const customerRepository = new CustomCustomerRepository()
     const locationRepository = new CustomLocationRepository()
     let location: LocationType
@@ -23,7 +23,7 @@ export class UpdateCustomerUseCase {
 
       await customerRepository.updateCustomer(customerToUpdate)
     } catch (error) {
-      throw Error('Update')
+      throw Error((error as Error).message)
     }
   }
 }

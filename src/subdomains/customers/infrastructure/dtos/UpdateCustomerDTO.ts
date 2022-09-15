@@ -1,6 +1,6 @@
 import { LocationType, NameType, PhoneType, PictureType } from "../../../../shared/types"
 
-export interface RequestUpdateCustomerDTO {
+export interface UpdateCustomerDTO {
   id: string
   name: NameType
   email: string
@@ -11,15 +11,4 @@ export interface RequestUpdateCustomerDTO {
   picture: PictureType
   location: LocationType
   role_id: number
-}
-
-export interface UpdateCustomerDTO {
-  id: string
-  gender: string
-  name: NameType
-  email: string
-  phone: string
-  cell: string
-  role_id: string
-  picture: PictureType
 }
