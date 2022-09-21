@@ -3,9 +3,14 @@ import { GetAllCustomersUseCase } from "../../useCases/getAllCustomers/GetAllCus
 import { CustomerMapper } from "../mappers/CustomerMapper"
 
 export class GetAllCustomersController {
+  private getAllCustomerUseCase: GetAllCustomersUseCase
+
+  constructor(getAllCustomerUseCase: GetAllCustomersUseCase) {
+    this.getAllCustomerUseCase = getAllCustomerUseCase
+  }
+
   async run(_request: Request, response: Response) {
-    const useCase = new GetAllCustomersUseCase()
-    const rawCustomers = await useCase.execute()
+    const rawCustomers = await this.getAllCustomerUseCase.execute()
     const customers = rawCustomers.map(customer => CustomerMapper.toDTO(customer))
 
     return response.status(200).json({ customers })

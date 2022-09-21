@@ -1,13 +1,18 @@
 import { Request, Response } from "express";
-import { DeleteCustomerUseCase } from "../../useCases/deleteCustomer";
+import { DeleteCustomerUseCase } from "../../useCases/DeleteCustomerUseCase";
 
 export class DeleteCustomerController {
+  private deleteCustomerUseCase: DeleteCustomerUseCase
+
+  constructor(deleteCustomerUseCase: DeleteCustomerUseCase) {
+    this.deleteCustomerUseCase = deleteCustomerUseCase
+  }
+
   async run(request: Request, response: Response) {
     const { email } = request.params
-    const deleteCustomerUseCase = new DeleteCustomerUseCase()
 
     try {
-      const wasDeleted = await deleteCustomerUseCase.execute(email)
+      const wasDeleted = await this.deleteCustomerUseCase.execute(email)
 
       if (wasDeleted) return response.status(200).end()
       
