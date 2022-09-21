@@ -6,15 +6,24 @@ import { UpdateCustomerDTO } from "../dtos/UpdateCustomerDTO";
 import { CustomerMapper } from "../mappers/CustomerMapper";
 
 export class UpdateCustomerController {
+  private updateCustomerUseCase: UpdateCustomerUseCase
+  private getCustomerByEmailUseCase: GetCustomerByEmailUseCase
+
+  constructor(
+    updateCustomerUseCase: UpdateCustomerUseCase,
+    getCustomerByEmailUseCase: GetCustomerByEmailUseCase
+  ) {
+    this.updateCustomerUseCase = updateCustomerUseCase
+    this.getCustomerByEmailUseCase = getCustomerByEmailUseCase
+  }
+
   async run(request: Request, response: Response) {
     const { email } = request.params
     const requestDTO = request.body as UpdateCustomerDTO
-    const updateCustomerUseCase = new UpdateCustomerUseCase()
-    const getCustomerByEmailUseCase = new GetCustomerByEmailUseCase()
     let customer: Customer[]
 
     try {
-      const rawCustomer = await getCustomerByEmailUseCase.execute(requestDTO.email)
+      const rawCustomer = await this.getCustomerByEmailUseCase.execute(requestDTO.email)
 
       if (!rawCustomer.length) {
         return response.status(404).json({
@@ -28,10 +37,10 @@ export class UpdateCustomerController {
     }
   
     try {
-      await updateCustomerUseCase.execute(requestDTO)
+      await this.updateCustomerUseCase.execute(requestDTO)
 
       try {
-        customer = await getCustomerByEmailUseCase.execute(email)
+        customer = await this.getCustomerByEmailUseCase.execute(email)
       } catch {
         return response.status(500)
           .json({ message: 'Customer updated, but there was an error on retrieving.' })

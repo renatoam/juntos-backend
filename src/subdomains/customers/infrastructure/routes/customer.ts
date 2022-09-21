@@ -1,16 +1,16 @@
 import { Router } from "express";
-import { CreateCustomerController } from "../controllers/CreateCustomerController";
+import { createCustomerController } from "../../features/CreateCustomer";
+import { getCustomerByEmailController } from "../../features/GetCustomerByEmail";
+import { updateCustomerController } from "../../features/UpdateCustomer";
 import { DeleteCustomerController } from "../controllers/DeleteCustomerController";
 import { GetAllCustomersController } from "../controllers/GetAllCustomersController";
-import { GetCustomerByEmailController } from "../controllers/GetCustomerByEmailController";
-import { UpdateCustomerController } from "../controllers/UpdateCustomerController";
 
 const customerRoutes = Router()
 
 customerRoutes.get('/', new GetAllCustomersController().run)
-customerRoutes.get('/:email', new GetCustomerByEmailController().run)
-customerRoutes.put('/:email', new UpdateCustomerController().run)
-customerRoutes.post('/create', new CreateCustomerController().run)
+customerRoutes.get('/:email', getCustomerByEmailController.run.bind(getCustomerByEmailController))
+customerRoutes.put('/:email', updateCustomerController.run.bind(updateCustomerController))
+customerRoutes.post('/create', createCustomerController.run.bind(createCustomerController))
 customerRoutes.delete('/:email', new DeleteCustomerController().run)
 
 export default customerRoutes

@@ -1,14 +1,10 @@
 import { client } from "../../../../shared/infrastructure/database/postgres";
 import { insertInto } from "../../../../shared/utils/queryFunctions";
-
-interface LocationCustomerProps {
-  customer_id: string
-  location_id: string
-}
+import { LocationCustomerProps, LocationCustomerRepository } from "./LocationCustomerRepository";
 
 // I'm not implementing the Repository base since I should make it more generic
 // In this case, I would need provide different arguments typs for the methods
-export class CustomLocationCustomerRepository {
+export class CustomLocationCustomerRepository implements LocationCustomerRepository<LocationCustomerProps> {
   async exists(relation: LocationCustomerProps): Promise<boolean> {
     const locationCustomerQuery = `SELECT location_id, customer_id FROM locations_customers
       WHERE location_id = '${relation.location_id}' AND customer_id = '${relation.customer_id}';`

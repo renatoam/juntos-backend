@@ -4,13 +4,22 @@ import { CustomCustomerRepository } from "../../infrastructure/repositories/Cust
 import { CustomLocationRepository } from "../../infrastructure/repositories/CustomLocationRepository";
 
 export class UpdateCustomerUseCase {
+  private customerRepository: CustomCustomerRepository
+  private locationRepository: CustomLocationRepository
+
+  constructor(
+    customerRepository: CustomCustomerRepository,
+    locationRepository: CustomLocationRepository
+  ) {
+    this.customerRepository = customerRepository
+    this.locationRepository = locationRepository
+  }
+
   async execute(requestUpdateCustomerDTO: UpdateCustomerDTO): Promise<void> {
-    const customerRepository = new CustomCustomerRepository()
-    const locationRepository = new CustomLocationRepository()
     let location: LocationType
 
     try {
-      location = await locationRepository.getLocationByCustomer(requestUpdateCustomerDTO.id)
+      location = await this.locationRepository.getLocationByCustomer(requestUpdateCustomerDTO.id)
     } catch (error) {
       throw Error('Location')
     }
@@ -21,7 +30,7 @@ export class UpdateCustomerUseCase {
         location: { ...requestUpdateCustomerDTO.location, id: location.id }
       }
 
-      await customerRepository.updateCustomer(customerToUpdate)
+      await this.customerRepository.updateCustomer(customerToUpdate)
     } catch (error) {
       throw Error((error as Error).message)
     }

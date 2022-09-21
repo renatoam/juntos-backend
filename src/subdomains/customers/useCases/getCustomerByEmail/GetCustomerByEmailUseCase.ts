@@ -2,11 +2,14 @@ import { Customer } from "../../domain/Customer";
 import { CustomCustomerRepository } from "../../infrastructure/repositories/CustomCustomerRepository";
 
 export class GetCustomerByEmailUseCase {
-  async execute(customerEmail: string): Promise<Customer[]> {
-    const customerRepository = new CustomCustomerRepository()
-    
+  private customerRepository: CustomCustomerRepository
+
+  constructor(customerRepository: CustomCustomerRepository) {
+    this.customerRepository = customerRepository
+  }
+  async execute(customerEmail: string): Promise<Customer[]> {    
     try {
-      return await customerRepository.getCustomerByEmail(customerEmail)
+      return await this.customerRepository.getCustomerByEmail(customerEmail)
     } catch (error) {
       const decodedError = error as Error
       throw Error(decodedError.message)

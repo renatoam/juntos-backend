@@ -3,11 +3,14 @@ import { GetCustomerByEmailUseCase } from "../../useCases/getCustomerByEmail/Get
 import { CustomerMapper } from "../mappers/CustomerMapper";
 
 export class GetCustomerByEmailController {
-  async run(request: Request, response: Response) {
-    const getCustomerByEmailUseCase = new GetCustomerByEmailUseCase()
+  private getCustomerByEmailUseCase: GetCustomerByEmailUseCase
 
+  constructor(getCustomerByEmailUseCase: GetCustomerByEmailUseCase) {
+    this.getCustomerByEmailUseCase = getCustomerByEmailUseCase
+  }
+  async run(request: Request, response: Response) {
     try {
-      const rawCustomer = await getCustomerByEmailUseCase.execute(request.params.email)
+      const rawCustomer = await this.getCustomerByEmailUseCase.execute(request.params.email)
 
       if (!rawCustomer.length) {
         return response.status(404).json({ message: 'Customer does not exist' })
